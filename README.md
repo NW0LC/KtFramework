@@ -3,7 +3,7 @@ Android-KtFramework
 ===========================
 
 
-![MyFramework Library](http://chuantu.biz/t5/95/1495865666x2890174064.png)
+![MyFramework Library](http://chuantu.biz/t6/52/1505655126x3084152555.jpg)
 
 
 This project contains a lot of convenient and development of the libraries, tools, and controls.Offline popular network framework
@@ -16,9 +16,9 @@ Feature
 
 • It's very easy to use for me 
 •    //====================分包错误包========================
-•    compile 'com.android.support:multidex:1.0.1'
+	compile 'com.android.support:multidex:1.0.1'
 •    //====================类似相对布局========================
-•    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+	compile 'com.android.support.constraint:constraint-layout:1.0.2'
 •    //====================毛玻璃view========================
 •    compile 'com.github.mmin18:realtimeblurview:1.1.0'
 •    //====================上下拉刷新========================
