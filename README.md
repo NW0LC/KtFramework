@@ -50,7 +50,7 @@ Feature
 
 •    //====================小工具========================
 
-•    compile 'com.blankj:utilcode:latest.release'
+    compile 'com.blankj:utilcode:latest.release'
 
 •    //====================网络请求========================
 
@@ -58,63 +58,63 @@ Feature
 
 •//    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'
 
-•    compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.lzy.net:okgo:3.0.4'
 
 •    //====================圆头像SimpleDraweeView========================
 
-•    compile 'com.facebook.fresco:fresco:1.5.0'
+    compile 'com.facebook.fresco:fresco:1.5.0'
 
 •    //====================lambda ========================
 
-•    compile 'me.tatarka:gradle-retrolambda:latest.release'
+    compile 'me.tatarka:gradle-retrolambda:latest.release'
 
 •    //====================侧滑删除 ========================
 
-•    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
+    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
 
 •    //====================webView ========================
 
-•    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
 
 •    //====================通用popWindow ========================
 
-•    compile 'com.github.razerdp:BasePopup:latest.release'
+    compile 'com.github.razerdp:BasePopup:latest.release'
 
 •    //====================权限申请 ========================
 
-•    compile 'com.github.hotchemi:permissionsdispatcher:3.0.0'
+    compile 'com.github.hotchemi:permissionsdispatcher:3.0.0'
 
-•    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.0'
 
 •    //====================轮播 ========================
 
-•    compile 'com.jude:rollviewpager:1.4.6'
+    compile 'com.jude:rollviewpager:1.4.6'
 
-•    compile 'com.youth.banner:banner:1.4.10'
+    compile 'com.youth.banner:banner:1.4.10'
 
 •    //====================json解析 ========================
 
-•    compile 'com.alibaba:fastjson:latest.release'
+    compile 'com.alibaba:fastjson:latest.release'
 
-•    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 
 •    //====================// Anko kotlin 插件 代码布局库========================
 
-•    compile 'org.jetbrains.anko:anko-sdk15:0.10.1' // sdk19 sdk21 sdk23 are also available
+    compile 'org.jetbrains.anko:anko-sdk15:0.10.1' // sdk19 sdk21 sdk23 are also available
 
-•    compile 'org.jetbrains.anko:anko-support-v4:0.10.1' // In case you need support-v4 bindings
+    compile 'org.jetbrains.anko:anko-support-v4:0.10.1' // In case you need support-v4 bindings
 
-•    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.1' // For appcompat-v7 bindings
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.1' // For appcompat-v7 bindings
 
-•    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.1' // For ankoRecyclerview bindings
+    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.1' // For ankoRecyclerview bindings
 
 •    //====================星星之间的间距========================
 
-•    compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
+    compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
 
 •    //====================俗名：垂直跑马灯学名：垂直翻页公告========================
 
-•    compile 'com.sunfusheng:marqueeview:1.3.2'
+    compile 'com.sunfusheng:marqueeview:1.3.2'
 
 •    //====================产品标签========================
 
@@ -136,7 +136,7 @@ Feature
 
 	compile 'de.hdodenhof:circleimageview:2.1.0'
 
-	//====================回调========================
+•    //====================回调========================
 	
 	compile 'com.hwangjr.rxbus:rxbus:2.0.0'
 
@@ -182,11 +182,11 @@ Feature
 
 •    //====================umeng统计========================
 
-•    compile "com.umeng.analytics:analytics:latest.integration"
-•
+    compile "com.umeng.analytics:analytics:latest.integration"
+
 •    //====================kotlin========================
 
-•    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 
 Download
