@@ -15,10 +15,13 @@ Feature
 --------------
 
 • It's very easy to use for me 
+
 •    //====================分包错误包========================
 	compile 'com.android.support:multidex:1.0.1'
+	
 •    //====================类似相对布局========================
 	compile 'com.android.support.constraint:constraint-layout:1.0.2'
+	
 •    //====================毛玻璃view========================
 •    compile 'com.github.mmin18:realtimeblurview:1.1.0'
 •    //====================上下拉刷新========================
