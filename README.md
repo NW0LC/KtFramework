@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/NW0LC/MyFramework.svg)](https://jitpack.io/#NW0LC/MyFramework)
+[![](https://jitpack.io/v/NW0LC/KtFramework.svg)](https://jitpack.io/#NW0LC/KtFramework)
 Android-KtFramework
 ===========================
 
@@ -203,8 +203,8 @@ Maven
 
       	<dependency>
 	    <groupId>com.github.NW0LC</groupId>
-	    <artifactId>MyFramework</artifactId>
-	    <version>1.0.1</version>
+	    <artifactId>KtFramework</artifactId>
+	    <version>1.0.0</version>
 	</dependency>
 
 ```
@@ -222,7 +222,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.NW0LC:MyFramework:1.0.21'
+	        compile 'com.github.NW0LC:KtFramework:1.0.0'
 	}
 ```
 
