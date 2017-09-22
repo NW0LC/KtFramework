@@ -48,6 +48,10 @@ Feature
 
 	compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
 
+•    //    颜色资源
+
+    compile 'com.github.vilyever:AndroidResource:1.2.1'
+
 •    //====================小工具========================
 
     compile 'com.blankj:utilcode:latest.release'
@@ -204,7 +208,7 @@ Maven
       	<dependency>
 	    <groupId>com.github.NW0LC</groupId>
 	    <artifactId>KtFramework</artifactId>
-	    <version>1.0.0</version>
+	    <version>1.0.1</version>
 	</dependency>
 
 ```
@@ -222,7 +226,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.NW0LC:KtFramework:1.0.0'
+	        compile 'com.github.NW0LC:KtFramework:1.0.1'
 	}
 ```
 
