@@ -18,6 +18,9 @@ import android.widget.TextView
 import com.szw.framelibrary.R
 import com.szw.framelibrary.app.MyApplication
 import com.szw.framelibrary.observer.SmsContentObserver
+import ezy.boost.update.IUpdateChecker
+import ezy.boost.update.IUpdateParser
+import ezy.boost.update.UpdateManager
 import org.jsoup.Jsoup
 import java.util.*
 import java.util.regex.Pattern
@@ -36,43 +39,43 @@ object SZWUtils {
      * @param intent   事件
      * @return true登录
      */
-    fun CheckLogin(mContext: Activity, intent: Intent, clazz: Class<*>): Boolean {
-        if (!MyApplication.checkUserLogin()) {
+    fun checkLogin(mContext: Activity, intent: Intent, clazz: Class<*>): Boolean {
+        return if (!MyApplication.checkUserLogin()) {
             val login = Intent(mContext, clazz)
             login.putExtras(intent)
             mContext.startActivityForResult(login, 0xc8)
             mContext.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
-            return false
+            false
         } else
-            return true
+            true
     }
 
     /**
      * @param mContext 上下文
      * @return true登录
      */
-    fun CheckLogin(mContext: Activity, clazz: Class<*>): Boolean {
-        if (!MyApplication.checkUserLogin()) {
+    fun checkLogin(mContext: Activity, clazz: Class<*>): Boolean {
+        return if (!MyApplication.checkUserLogin()) {
             val login = Intent(mContext, clazz)
             mContext.startActivityForResult(login, 0xc8)
             mContext.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
-            return false
+            false
         } else
-            return true
+            true
     }
 
     /**
      * @param mContext 上下文
      * @return true登录
      */
-    fun CheckLogin(mContext: Fragment, clazz: Class<*>): Boolean {
-        if (!MyApplication.checkUserLogin()) {
+    fun checkLogin(mContext: Fragment, clazz: Class<*>): Boolean {
+        return if (!MyApplication.checkUserLogin()) {
             val login = Intent(mContext.activity, clazz)
             mContext.startActivityForResult(login, 0xc8)
             mContext.activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
-            return false
+            false
         } else
-            return true
+            true
     }
 
     /**
@@ -92,7 +95,7 @@ object SZWUtils {
      * @return if version1 > version2, return 1, if equal, return 0, else return
      * -1
      */
-    fun VersionComparison(versionServer: String?, versionLocal: String?): Int {
+    fun versionComparison(versionServer: String?, versionLocal: String?): Int {
         if (versionServer == null || versionServer.isEmpty() || versionLocal == null || versionLocal.isEmpty())
             throw IllegalArgumentException("Invalid parameter!")
 
@@ -136,18 +139,18 @@ object SZWUtils {
      * the starting point
      * @return the number between two dots, and the index of the dot
      */
-    fun getValue(version: String, index: Int): IntArray {
+    private fun getValue(version: String, index: Int): IntArray {
         var index = index
-        val value_index = IntArray(2)
+        val valueIndex = IntArray(2)
         val sb = StringBuilder()
         while (index < version.length && version[index] != '.') {
             sb.append(version[index])
             index++
         }
-        value_index[0] = Integer.parseInt(sb.toString())
-        value_index[1] = index
+        valueIndex[0] = Integer.parseInt(sb.toString())
+        valueIndex[1] = index
 
-        return value_index
+        return valueIndex
     }
 
     /**
@@ -155,9 +158,7 @@ object SZWUtils {
      * @param textView 返回验证码的textView
      * @return 验证码handler
      */
-    fun patternCode(mContext: Context, textView: TextView): Handler {
-        return MyHandler(mContext, textView)
-    }
+    fun patternCode(mContext: Context, textView: TextView): Handler = MyHandler(mContext, textView)
 
     class MyHandler constructor(internal var mContext: Context, private var textView: TextView) : Handler() {
 
@@ -329,5 +330,69 @@ object SZWUtils {
         }
         //
         return doc_Dis.toString()
+    }
+
+    /**
+     * [isManual] 是否是手动更新   true 是  false 否
+     * [checkUrl] 检查接口
+     * [notifyId] 通知id
+     */
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int) {
+        /**
+         * 检查版本更新
+         * 地址:	http://xxx/App/Upgrade
+         * 入参:	versionCode	string	必填	版本号
+         * 返回:	{
+         *             "code":"200",
+         *             "message":"提示"，
+         *               "data": {
+         *                     "hasUpdate":"false// 是否有新版本(最重要)",
+         *                     "isSilent":"false// 是否静默下载：有新版本时不提示直接下载",
+         *                     "isForce":"false// 是否强制安装：不安装无法使用app",
+         *                     "isAutoInstall":"false// 是否下载完成后自动安装",
+         *                     "isIgnorable":"true// 是否可忽略该版本",
+         *                     "maxTimes":"0// 一天内最大提示次数，<1时不限",
+         *                     "versionCode":101,
+         *                     "versionName":"1.0.1",
+         *                     "updateContent":"更新说明",
+         *                     "url":"下载地址",
+         *                     "md5":"文件md5校验码(最重要)",
+         *                     "size":"文件长度"
+         *               }
+         *         }
+         * 说明	备注	参数是布尔值的都有默认参数   颜色标记为必传，其他选传
+         * md5	apk文件 的md5   不是keystore的md5
+         */
+        UpdateManager.create(context).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).check()
+    }
+    /**
+     *  不建议使用
+     * [isManual] 是否是手动更新   true 是  false 否
+     * [checkUrl] 检查接口
+     * [notifyId] 通知id
+     */
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int,checker:IUpdateChecker ) {
+        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).check()
+    }
+    /**
+     * 不建议使用
+     * [isManual] 是否是手动更新   true 是  false 否
+     * [checkUrl] 检查接口
+     * [notifyId] 通知id
+     * [checker]  自定义  访问网络获取验证版本信息方法   agent.setInfo(String)
+     * [parser]  自定义  解析获取验证版本信息方法  返回  UpdateInfo
+     */
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int,checker:IUpdateChecker , parser: IUpdateParser) {
+        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
+    }
+    /**
+     * 不建议使用
+     * [isManual] 是否是手动更新   true 是  false 否
+     * [checkUrl] 检查接口
+     * [notifyId] 通知id
+     * [parser]  自定义  解析获取验证版本信息方法  返回  UpdateInfo
+     */
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int , parser: IUpdateParser) {
+        UpdateManager.create(context).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
     }
 }
