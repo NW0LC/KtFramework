@@ -20,7 +20,10 @@ import com.szw.framelibrary.app.MyApplication
 import com.szw.framelibrary.observer.SmsContentObserver
 import ezy.boost.update.IUpdateChecker
 import ezy.boost.update.IUpdateParser
+import ezy.boost.update.UpdateInfo
 import ezy.boost.update.UpdateManager
+import org.json.JSONException
+import org.json.JSONObject
 import org.jsoup.Jsoup
 import java.util.*
 import java.util.regex.Pattern
@@ -335,9 +338,10 @@ object SZWUtils {
     /**
      * [isManual] 是否是手动更新   true 是  false 否
      * [checkUrl] 检查接口
+     * [postData] post参数  param=12&param2=32
      * [notifyId] 通知id
      */
-    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int) {
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String,postData:String, notifyId: Int) {
         /**
          * 检查版本更新
          * 地址:	http://xxx/App/Upgrade
@@ -363,36 +367,74 @@ object SZWUtils {
          * 说明	备注	参数是布尔值的都有默认参数   颜色标记为必传，其他选传
          * md5	apk文件 的md5   不是keystore的md5
          */
-        UpdateManager.create(context).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).check()
+        UpdateManager.create(context).setUrl(checkUrl).setPostData(postData).setManual(isManual).setNotifyId(notifyId).check()
     }
     /**
      *  不建议使用
      * [isManual] 是否是手动更新   true 是  false 否
      * [checkUrl] 检查接口
+     * [postData] post参数  param=12&param2=32
      * [notifyId] 通知id
      */
-    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int,checker:IUpdateChecker ) {
-        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).check()
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String,postData:String, notifyId: Int,checker:IUpdateChecker ) {
+        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setPostData(postData).setManual(isManual).setNotifyId(notifyId).check()
     }
     /**
      * 不建议使用
      * [isManual] 是否是手动更新   true 是  false 否
      * [checkUrl] 检查接口
+     * [postData] post参数  param=12&param2=32
      * [notifyId] 通知id
      * [checker]  自定义  访问网络获取验证版本信息方法   agent.setInfo(String)
      * [parser]  自定义  解析获取验证版本信息方法  返回  UpdateInfo
      */
-    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int,checker:IUpdateChecker , parser: IUpdateParser) {
-        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String,postData:String, notifyId: Int,checker:IUpdateChecker , parser: IUpdateParser) {
+        UpdateManager.create(context).setChecker(checker).setUrl(checkUrl).setPostData(postData).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
     }
     /**
      * 不建议使用
      * [isManual] 是否是手动更新   true 是  false 否
      * [checkUrl] 检查接口
+     * [postData] post参数  param=12&param2=32
      * [notifyId] 通知id
      * [parser]  自定义  解析获取验证版本信息方法  返回  UpdateInfo
      */
-    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String, notifyId: Int , parser: IUpdateParser) {
-        UpdateManager.create(context).setUrl(checkUrl).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
+    fun checkUpgrade(context:Context,isManual: Boolean,checkUrl:String,postData:String, notifyId: Int , parser: IUpdateParser) {
+        UpdateManager.create(context).setUrl(checkUrl).setPostData(postData).setManual(isManual).setNotifyId(notifyId).setParser(parser).check()
+    }
+
+    /**
+     * 版本更新解析
+     * [s]
+     */
+    @Throws(JSONException::class)
+    private fun checkUpgradeParse(s: String): UpdateInfo {
+        val o = JSONObject(s)
+        return parse(if (o.has("info")) o.getJSONObject("info") else o)
+    }
+
+    private fun parse(o: JSONObject?): UpdateInfo {
+        val info = UpdateInfo()
+        if (o == null) {
+            return info
+        }
+        info.hasUpdate = o.optBoolean("hasUpdate", false)
+        if (!info.hasUpdate) {
+            return info
+        }
+        info.isSilent = o.optBoolean("isSilent", false)
+        info.isForce = o.optBoolean("isForce", false)
+        info.isAutoInstall = o.optBoolean("isAutoInstall", !info.isSilent)
+        info.isIgnorable = o.optBoolean("isIgnorable", true)
+
+        info.versionCode = o.optInt("android_VersionCode", 0)
+        info.versionName = o.optString("android_VersionName")
+        info.updateContent = o.optString("updateContent")
+
+        info.url = o.optString("url")
+        info.md5 = o.optString("md5")
+        info.size = o.optLong("size", 0)
+
+        return info
     }
 }
