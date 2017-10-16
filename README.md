@@ -184,6 +184,10 @@ Feature
 
 	compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
 
+•    //====================检查更新安装包========================
+
+    compile 'com.github.czy1121:update:1.1.1'
+
 •    //====================umeng统计========================
 
     compile "com.umeng.analytics:analytics:latest.integration"

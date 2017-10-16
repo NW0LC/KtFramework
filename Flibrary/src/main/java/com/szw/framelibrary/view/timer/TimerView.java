@@ -249,7 +249,7 @@ public class TimerView extends LinearLayout {
         private TextView getNumTv() {
             if (numTv == null) {
                 numTv = new TextView(context);
-                numTv.setTextColor(ContextCompat.getColor(context,R.color.black_333333));
+                numTv.setTextColor(ContextCompat.getColor(context,R.color.MaterialGrey800));
                 numTv.setBackgroundColor(Color.WHITE);
                 numTv.setTextSize(12);
             }
@@ -259,7 +259,7 @@ public class TimerView extends LinearLayout {
         private TextView getUnitTv() {
             if (unitTv == null) {
                 unitTv = new TextView(context);
-                unitTv.setTextColor(ContextCompat.getColor(context,R.color.black_333333));
+                unitTv.setTextColor(ContextCompat.getColor(context,R.color.MaterialGrey800));
 
             }
             return unitTv;

@@ -7,4 +7,6 @@
     <color name="color_loadMore">#0dddb8</color>
     <color name="color_toolBar">#00ffffff</color>
     <color name="color_toolBar_title">#FF333333</color>
+    <color name="color_previewActivity_toolBar_bg">#FF333333</color>
+    <color name="color_previewActivity_toolBar_title">#ffffff</color>
 </resources>

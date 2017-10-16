@@ -18,6 +18,11 @@ android {
 
         renderscriptTargetApi 25
         renderscriptSupportModeEnabled true    // Enable RS support
+
+        //        设置友盟统计key ,可在build里面
+        manifestPlaceholders = [
+                UMENG_APPKEY : "", //友盟key
+        ]
     }
     buildTypes {
         release {

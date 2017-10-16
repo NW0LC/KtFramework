@@ -30,36 +30,34 @@ import java.util.*
 class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener, PreviewFragment.LoadImageLister {
     // Content View Elements
 
-    lateinit var mToolbar: Toolbar
-    lateinit var parentLay: RelativeLayout
-    lateinit var mMTitle: TextView
-    lateinit var mMRight: TextView
-    lateinit var mMRightImg: ImageView
-    lateinit var mPreview_viewpager: ViewPager
-    lateinit var mBtn_save: Button
+    private lateinit var mToolbar: Toolbar
+    private lateinit var parentLay: RelativeLayout
+    private lateinit var mMTitle: TextView
+    private lateinit var mMRight: TextView
+    private lateinit var mMRightImg: ImageView
+    private lateinit var mPreview_viewpager: ViewPager
+    private lateinit var mBtn_save: Button
     private var position: Int = 0
-    lateinit var fragments: MutableList<Fragment>
+    private lateinit var fragments: MutableList<Fragment>
     private var imgUrls=ArrayList<T>()
     private var imgUrlsStrs= ArrayList<String>()
     private var resultPosition= ArrayList<Any>()
-    lateinit var mPagerAdapter: FragmentPagerAdapter
+    private lateinit var mPagerAdapter: FragmentPagerAdapter
     private var isStrs: Boolean = false
 
 
     override fun initToolbar(): Boolean {
         mToolbar.setContentInsetsAbsolute(0, 0)
-        mToolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black_a7000000))
+        mToolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_previewActivity_toolBar_bg))
         mMTitle.textSize = 18f
-        mMTitle.setTextColor(ContextCompat.getColor(mContext, R.color.white))
+        mMTitle.setTextColor(ContextCompat.getColor(mContext, R.color.color_previewActivity_toolBar_title))
         mMRightImg.setImageResource(R.drawable.ic_delete_black_24dp)
         mMRightImg.setPadding(SizeUtils.dp2px(15f), SizeUtils.dp2px(15f), SizeUtils.dp2px(15f), SizeUtils.dp2px(15f))
         setSupportActionBar(mToolbar)
         return false
     }
 
-    override fun setInflateId(): Int {
-        return R.layout.activity_preview
-    }
+    override fun setInflateId(): Int = R.layout.activity_preview
 
     @Throws(Exception::class)
     override fun init() {
@@ -75,16 +73,16 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         mToolbar.setNavigationOnClickListener { finish() }
         mMRightImg.setOnClickListener(this)
         mBtn_save.setOnClickListener(this)
-        val animator_exit = ObjectAnimator.ofFloat(parentLay, "translationY", 0f, SizeUtils.dp2px(-55f).toFloat())
-        val animator_in = ObjectAnimator.ofFloat(parentLay, "translationY", SizeUtils.dp2px(-55f).toFloat(), 0f)
+        val animatorExit = ObjectAnimator.ofFloat(parentLay, "translationY", 0f, SizeUtils.dp2px(-55f).toFloat())
+        val animatorIn = ObjectAnimator.ofFloat(parentLay, "translationY", SizeUtils.dp2px(-55f).toFloat(), 0f)
         val transition = LayoutTransition()
-        transition.setAnimator(LayoutTransition.APPEARING, animator_in)
-        transition.setAnimator(LayoutTransition.DISAPPEARING, animator_exit)
+        transition.setAnimator(LayoutTransition.APPEARING, animatorIn)
+        transition.setAnimator(LayoutTransition.DISAPPEARING, animatorExit)
         parentLay.layoutTransition = transition
     }
 
     private fun initFragment() {
-        resultPosition = ArrayList<Any>()
+        resultPosition = ArrayList()
         fragments = ArrayList()
         if (intent.getParcelableArrayListExtra<Parcelable>(PREVIEW_INTENT_IMAGES) != null && intent.getParcelableArrayListExtra<Parcelable>(PREVIEW_INTENT_IMAGES).size > 0 && intent.getParcelableArrayListExtra<Parcelable>(PREVIEW_INTENT_IMAGES)[0] is PreviewObject) {
             imgUrls = intent.getParcelableArrayListExtra(PREVIEW_INTENT_IMAGES)
@@ -124,7 +122,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
             }
 
             override fun onPageSelected(position: Int) {
-                mMTitle.text = (position + 1).toString() + "/" + fragments.size
+                mMTitle.text = "${(position + 1)}/${fragments.size}"
                 this@PreviewActivity.position = position
             }
 
@@ -157,12 +155,12 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         }
     }
 
-    fun delete() {
+    private fun delete() {
         val materialDialog = MaterialDialog(this)
         materialDialog.setTitle("提示").setPositiveButton("确定") {
             materialDialog.dismiss()
             val intent = Intent()
-            if (position < imgUrls?.size?:0) {
+            if (position < imgUrls.size) {
                 if (isStrs) {
                     resultPosition.add(imgUrlsStrs[position])
                     imgUrlsStrs.removeAt(position)
