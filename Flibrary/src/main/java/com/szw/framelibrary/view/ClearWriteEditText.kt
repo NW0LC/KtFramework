@@ -20,12 +20,12 @@ import com.szw.framelibrary.R
  * Created by AMing on 15/11/2.
  * Company RongCloud
  */
-class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.editTextStyle) : AppCompatEditText(context, attrs, defStyleAttr), View.OnFocusChangeListener, TextWatcher {
+open class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.editTextStyle) : AppCompatEditText(context, attrs, defStyleAttr), View.OnFocusChangeListener, TextWatcher {
 
     /**
      * 删除按钮的引用
      */
-    var clearDrawable: Drawable? = null
+    private lateinit var clearDrawable: Drawable
 
     init {
         init()
@@ -33,7 +33,7 @@ class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: Attr
 
     private fun init() {
         clearDrawable = ContextCompat.getDrawable(context, R.mipmap.delete)
-        clearDrawable!!.setBounds(0, 0, clearDrawable!!.intrinsicWidth, clearDrawable!!.intrinsicHeight)
+        clearDrawable.setBounds(0, 0, clearDrawable.intrinsicWidth, clearDrawable.intrinsicHeight)
         setClearIconVisible(false)
         this.onFocusChangeListener = this
         this.addTextChangedListener(this)
@@ -43,7 +43,7 @@ class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: Attr
      * 当输入框里面内容发生变化的时候回调的方法
      */
     override fun onTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-        setClearIconVisible(s.length > 0)
+        setClearIconVisible(s.isNotEmpty())
     }
 
 
@@ -51,7 +51,7 @@ class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: Attr
      * 设置清除图标的显示与隐藏，调用setCompoundDrawables为EditText绘制上去
      * @param visible  boolean
      */
-    protected fun setClearIconVisible(visible: Boolean) {
+     fun setClearIconVisible(visible: Boolean) {
         val right = if (visible) clearDrawable else null
         setCompoundDrawables(compoundDrawables[0],
                 compoundDrawables[1], right, compoundDrawables[3])
@@ -65,7 +65,7 @@ class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: Attr
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (compoundDrawables[2] != null) {
             if (event.action == MotionEvent.ACTION_UP) {
-                val touchable = event.x > width- paddingRight - clearDrawable!!.intrinsicWidth && event.x < width - paddingRight
+                val touchable = event.x > width- paddingRight - clearDrawable.intrinsicWidth && event.x < width - paddingRight
                 if (touchable) {
                     this.setText("")
                 }
@@ -80,7 +80,7 @@ class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs: Attr
      */
     override fun onFocusChange(v: View, hasFocus: Boolean) {
         if (hasFocus) {
-            setClearIconVisible(text.length > 0)
+            setClearIconVisible(text.isNotEmpty())
         } else {
             setClearIconVisible(false)
         }
