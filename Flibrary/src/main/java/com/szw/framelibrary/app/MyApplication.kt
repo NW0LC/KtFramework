@@ -157,7 +157,7 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
         }
 
         //===================================================================================================================
-        private var user: AbsUser? = null
+        var user: AbsUser? = null
 
 
         //判断 用户是否登录
