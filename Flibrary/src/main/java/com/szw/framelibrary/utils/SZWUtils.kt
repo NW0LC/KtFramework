@@ -161,16 +161,16 @@ object SZWUtils {
      * @param textView 返回验证码的textView
      * @return 验证码handler
      */
-    fun patternCode(mContext: Context, textView: TextView): Handler = MyHandler(mContext, textView)
+    fun patternCode(mContext: Context, textView: TextView,length:Int): Handler = MyHandler(mContext, textView,length)
 
-    class MyHandler constructor(internal var mContext: Context, private var textView: TextView) : Handler() {
+    class MyHandler constructor(internal var mContext: Context, private var textView: TextView,private var length:Int) : Handler() {
 
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             val outbox = msg.obj as String
             //            edCode.setText(outbox);
             //            Toast.makeText(mContext, outbox, Toast.LENGTH_SHORT).show();
-            textView.text = SZWUtils.patternCode(outbox, 4)
+            textView.text = SZWUtils.patternCode(outbox, length)
         }
     }
 
