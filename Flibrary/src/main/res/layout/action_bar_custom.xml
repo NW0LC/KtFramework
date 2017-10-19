@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/toolbarLay"
-    android:background="@color/color_toolBar"
     >
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:realtimeBlurRadius="10dp"
+        app:realtimeOverlayColor="@color/colorPrimary"
+        />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
