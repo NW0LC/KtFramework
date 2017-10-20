@@ -41,5 +41,5 @@ import com.szw.framelibrary.view.CustomProgress
     }
 
     abstract fun initView()
-    fun initEvent() {}
+    open fun initEvent() {}
 }
