@@ -31,6 +31,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     // Content View Elements
 
     private lateinit var mToolbar: Toolbar
+    private lateinit var toolbarLay: RelativeLayout
     private lateinit var parentLay: RelativeLayout
     private lateinit var mMTitle: TextView
     private lateinit var mMRight: TextView
@@ -136,6 +137,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
 
     private fun bindViews() {
         mToolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        toolbarLay = findViewById<View>(R.id.toolbarLay) as RelativeLayout
         parentLay = findViewById<View>(R.id.parentLay) as RelativeLayout
         mMTitle = findViewById<View>(R.id.mTitle) as TextView
         mMRight = findViewById<View>(R.id.mRight) as TextView
@@ -195,7 +197,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     }
 
     override fun onClick() {
-        mToolbar.visibility = if (mToolbar.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        toolbarLay.visibility = if (mToolbar.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         mBtn_save.visibility = if (mBtn_save.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
