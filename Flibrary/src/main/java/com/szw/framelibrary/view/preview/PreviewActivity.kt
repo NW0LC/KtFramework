@@ -96,7 +96,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         } else {
             imgUrlsStrs = intent.getStringArrayListExtra(PREVIEW_INTENT_IMAGES)
             isStrs = true
-            imgUrlsStrs?.forEach { imgUrl ->
+            imgUrlsStrs.forEach { imgUrl ->
                 val fragment = PreviewFragment.Instance(imgUrl, "")
                 fragment.setLoadImageLister(this)
                 (fragments as ArrayList<Fragment>).add(fragment)

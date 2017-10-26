@@ -72,12 +72,10 @@ object DialogUtils {
     fun reminder(context: Context, title: String, content: String, listener: View.OnClickListener?, vararg btnStr: String) {
         var cancel = "取消"
         var ok = "确定"
-        if (btnStr != null) {
-            if (btnStr.size >= 1)
-                ok = btnStr[0]
-            if (btnStr.size >= 2)
-                cancel = btnStr[1]
-        }
+        if (btnStr.isNotEmpty())
+            ok = btnStr[0]
+        if (btnStr.size >= 2)
+            cancel = btnStr[1]
         dialog = CommonDialogFactory.createDialogByType(context, DialogUtil.DIALOG_TYPE_103)
         dialog?.setTitleText(if (TextUtils.isEmpty(title)) "提示" else title)
         dialog?.setContentText(if (TextUtils.isEmpty(content)) "确定要这样做吗？" else content)

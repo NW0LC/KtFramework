@@ -18,7 +18,7 @@ import com.szw.framelibrary.config.Constants;
 import com.szw.framelibrary.view.CustomProgress;
 import com.umeng.analytics.MobclickAgent;
 
-import butterknife.ButterKnife;
+//import butterknife.ButterKnife;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
@@ -50,7 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(setInflateId());
         mContext = this;
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
         try {
             init();
             init(savedInstanceState);
@@ -106,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
 
     @Override
     public void PermissionCameraWithCheck(Intent intent, int requestCode, boolean isService) {
-//        BaseActivityPermissionsDispatcher.PermissionCameraWithCheck(this, intent,requestCode,isService);
+        BaseActivityPermissionsDispatcher.PermissionCameraWithPermissionCheck(this, intent,requestCode,isService);
     }
 
     @Override
@@ -175,7 +175,7 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        BaseActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        BaseActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
     public void onResume() {
         super.onResume();
