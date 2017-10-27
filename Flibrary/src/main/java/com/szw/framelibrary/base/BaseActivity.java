@@ -145,22 +145,22 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
 
     @NeedsPermission({CAMERA, WRITE_EXTERNAL_STORAGE})
     void PermissionCamera(Intent intent,int requestCode, boolean isService) {
-        startAction(intent, isService,requestCode==-1? Constants.Permission.INSTANCE.getCamera():requestCode);
+        startAction(intent, isService,requestCode==-1? Constants.Permission.Camera :requestCode);
     }
 
     @NeedsPermission({ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION})
     void PermissionLocation(Intent intent,int requestCode, boolean isService) {
-        startAction(intent, isService,requestCode==-1?Constants.Permission.INSTANCE.getLocation():requestCode);
+        startAction(intent, isService,requestCode==-1? Constants.Permission.Location :requestCode);
     }
 
     @NeedsPermission({RECEIVE_SMS, READ_SMS})
     void PermissionSMS(Intent intent,int requestCode, boolean isService) {
-        startAction(intent, isService,requestCode==-1?Constants.Permission.INSTANCE.getSMS():requestCode);
+        startAction(intent, isService,requestCode==-1? Constants.Permission.SMS :requestCode);
     }
 
     @NeedsPermission(CALL_PHONE)
     void PermissionCallPhone(Intent intent,int requestCode, boolean isService) {
-        startAction(intent, isService,requestCode==-1?Constants.Permission.INSTANCE.getPhone():requestCode);
+        startAction(intent, isService,requestCode==-1? Constants.Permission.Phone :requestCode);
     }
 
     void startAction(Intent intent, boolean isService,int requestCode) {
