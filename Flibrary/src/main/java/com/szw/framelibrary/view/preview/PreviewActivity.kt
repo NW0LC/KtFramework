@@ -197,7 +197,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     }
 
     override fun onClick() {
-        toolbarLay.visibility = if (mToolbar.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        toolbarLay.visibility = if (toolbarLay.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         mBtn_save.visibility = if (mBtn_save.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
