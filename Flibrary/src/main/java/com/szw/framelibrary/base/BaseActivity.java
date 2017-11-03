@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
     public Context mContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
 //            finish();
@@ -189,15 +189,14 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
+
         try {
             RxBus.get().unregister(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomProgress.Companion.disMiss();
+        CustomProgress.Companion.disMissNow();
         super.onDestroy();
     }
-
-
 }

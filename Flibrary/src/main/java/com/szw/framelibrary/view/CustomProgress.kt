@@ -114,5 +114,13 @@ open class CustomProgress : Dialog {
 
             }
         }
+        /**
+         * 关闭dialog
+         */
+        fun disMissNow() {
+            if (sProgress != null && sProgress?.isShowing==true) {
+                sProgress?.dismiss()
+            }
+        }
     }
 }
