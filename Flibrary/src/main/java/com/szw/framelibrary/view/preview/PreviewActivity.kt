@@ -6,8 +6,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Parcelable
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.view.View
@@ -36,14 +37,15 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     private lateinit var mMTitle: TextView
     private lateinit var mMRight: TextView
     private lateinit var mMRightImg: ImageView
-    private lateinit var mPreview_viewpager: ViewPager
-    private lateinit var mBtn_save: Button
+    private lateinit var mPreviewViewpager: ViewPager
+    private lateinit var mLeftImg: ImageView
+    private lateinit var mBtnSave: Button
     private var position: Int = 0
     private lateinit var fragments: MutableList<Fragment>
-    private var imgUrls=ArrayList<T>()
-    private var imgUrlsStrs= ArrayList<String>()
-    private var resultPosition= ArrayList<Any>()
-    private lateinit var mPagerAdapter: FragmentPagerAdapter
+    private var imgUrls = ArrayList<T>()
+    private var imgUrlsStrs = ArrayList<String>()
+    private var resultPosition = ArrayList<Any>()
+    private lateinit var mPagerAdapter: FragmentStatePagerAdapter
     private var isStrs: Boolean = false
 
 
@@ -73,7 +75,8 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         mMTitle.visibility = if (intent.getBooleanExtra(PREVIEW_INTENT_SHOW_NUM, false)) View.VISIBLE else View.GONE
         mToolbar.setNavigationOnClickListener { finish() }
         mMRightImg.setOnClickListener(this)
-        mBtn_save.setOnClickListener(this)
+        mLeftImg.setOnClickListener(this)
+        mBtnSave.setOnClickListener(this)
         val animatorExit = ObjectAnimator.ofFloat(parentLay, "translationY", 0f, SizeUtils.dp2px(-55f).toFloat())
         val animatorIn = ObjectAnimator.ofFloat(parentLay, "translationY", SizeUtils.dp2px(-55f).toFloat(), 0f)
         val transition = LayoutTransition()
@@ -106,24 +109,20 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     }
 
     private fun initPager() {
-        mPagerAdapter = object : FragmentPagerAdapter(supportFragmentManager) {
-            override fun getItem(position: Int): Fragment {
-                return fragments.get(position)
-            }
-
-            override fun getCount(): Int {
-                return fragments.size
-            }
+        mPagerAdapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): Fragment = fragments[position]
+            override fun getCount(): Int = fragments.size
+            override fun getItemPosition(`object`: Any?): Int = PagerAdapter.POSITION_NONE
         }
-        mPreview_viewpager.offscreenPageLimit = fragments.size
-        mPreview_viewpager.adapter = mPagerAdapter
-        mPreview_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        mPreviewViewpager.offscreenPageLimit = fragments.size
+        mPreviewViewpager.adapter = mPagerAdapter
+        mPreviewViewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
 
             override fun onPageSelected(position: Int) {
-                mMTitle.text = "${(position + 1)}/${fragments.size}"
+                mMTitle.text = String.format("${(position + 1)}/${fragments.size}")
                 this@PreviewActivity.position = position
             }
 
@@ -132,7 +131,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
             }
         })
         mMTitle.text = String.format("1/%s", fragments.size)
-        mPreview_viewpager.setCurrentItem(intent.getIntExtra(PREVIEW_INTENT_POSITION, 0), false)
+        mPreviewViewpager.setCurrentItem(intent.getIntExtra(PREVIEW_INTENT_POSITION, 0), false)
     }
 
     private fun bindViews() {
@@ -142,18 +141,20 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         mMTitle = findViewById<View>(R.id.mTitle) as TextView
         mMRight = findViewById<View>(R.id.mRight) as TextView
         mMRightImg = findViewById<View>(R.id.mRightImg) as ImageView
-        mPreview_viewpager = findViewById<View>(R.id.preview_viewpager) as ViewPager
-        mBtn_save = findViewById<View>(R.id.btn_save) as Button
+        mPreviewViewpager = findViewById<View>(R.id.preview_viewpager) as ViewPager
+        mLeftImg = findViewById<View>(R.id.mLeftImg) as ImageView
+        mBtnSave = findViewById<View>(R.id.btn_save) as Button
     }
 
     override fun onClick(v: View) {
         val i = v.id
+        if (i == R.id.mLeftImg) {
+            finish()
+        }
         if (i == R.id.mRightImg) {
             delete()
-
         } else if (i == R.id.btn_save) {
             (mPagerAdapter.getItem(position) as PreviewFragment).saveImage()
-
         }
     }
 
@@ -162,25 +163,23 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         materialDialog.setTitle("提示").setPositiveButton("确定") {
             materialDialog.dismiss()
             val intent = Intent()
-            if (position < imgUrls.size) {
-                if (isStrs) {
-                    resultPosition.add(imgUrlsStrs[position])
-                    imgUrlsStrs.removeAt(position)
-                    intent.putStringArrayListExtra(PREVIEW_INTENT_RESULT, resultPosition as ArrayList<String>)
-                } else {
-                    resultPosition.add(imgUrls[position])
-                    imgUrls.removeAt(position)
-                    intent.putParcelableArrayListExtra(PREVIEW_INTENT_RESULT, resultPosition as ArrayList<out Parcelable>)
-                }
-                fragments.removeAt(position)
-                if (position + 1 < fragments.size) {
-                    mMTitle.text = (position + 1).toString() + "/" + fragments.size
-                } else {
-                    mMTitle.text = fragments.size.toString() + "/" + fragments.size
-                }
-
-                mPagerAdapter.notifyDataSetChanged()
+            if (isStrs) {
+                resultPosition.add(imgUrlsStrs[position])
+                imgUrlsStrs.removeAt(position)
+                intent.putStringArrayListExtra(PREVIEW_INTENT_RESULT, resultPosition as ArrayList<String>)
+            } else {
+                resultPosition.add(imgUrls[position])
+                imgUrls.removeAt(position)
+                intent.putParcelableArrayListExtra(PREVIEW_INTENT_RESULT, resultPosition as ArrayList<out Parcelable>)
             }
+            fragments.removeAt(position)
+            if (position + 1 < fragments.size) {
+                mMTitle.text = String.format("${(position + 1)}/${fragments.size}")
+            } else {
+                mMTitle.text = String.format("${fragments.size}/${fragments.size}")
+            }
+
+            mPagerAdapter.notifyDataSetChanged()
             setResult(Activity.RESULT_OK, intent)
             if (fragments.size == 0) {
                 this@PreviewActivity.finish()
@@ -189,16 +188,16 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     }
 
     override fun complete() {
-        mBtn_save.visibility = View.VISIBLE
+        mBtnSave.visibility = View.VISIBLE
     }
 
     override fun failed() {
-        mBtn_save.visibility = View.GONE
+        mBtnSave.visibility = View.GONE
     }
 
     override fun onClick() {
         toolbarLay.visibility = if (toolbarLay.visibility == View.VISIBLE) View.GONE else View.VISIBLE
-        mBtn_save.visibility = if (mBtn_save.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        mBtnSave.visibility = if (mBtnSave.visibility == View.VISIBLE) View.GONE else View.VISIBLE
     }
 
     companion object {
