@@ -212,7 +212,7 @@ Maven
       	<dependency>
 	    <groupId>com.github.NW0LC</groupId>
 	    <artifactId>KtFramework</artifactId>
-	    <version>1.1.4</version>
+	    <version>1.1.6</version>
 	</dependency>
 
 ```
@@ -230,7 +230,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.NW0LC:KtFramework:1.1.4'
+	        compile 'com.github.NW0LC:KtFramework:1.1.6'
 	}
 ```
 
