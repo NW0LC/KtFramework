@@ -3,7 +3,7 @@ Android-KtFramework
 ===========================
 
 
-![MyFramework Library](http://chuantu.biz/t6/52/1505655126x3084152555.jpg)
+![MyFramework Library](http://upload.ouliu.net/i/20171218140859gmsis.jpeg)
 
 
 This project contains a lot of convenient and development of the libraries, tools, and controls.Offline popular network framework
@@ -30,11 +30,11 @@ Feature
 	
 •    //====================上下拉刷新========================
 
-	compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-alpha-1'
+	compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
 
 •    //====================recyclerView adapter封装类========================
 
-	compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+	compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
 •    //====================图片加载========================
 
@@ -86,9 +86,9 @@ Feature
 
 •    //====================权限申请 ========================
 
-    compile 'com.github.hotchemi:permissionsdispatcher:3.0.0'
+    compile 'com.github.hotchemi:permissionsdispatcher:3.0.1'
 
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
 
 •    //====================轮播 ========================
 
@@ -100,17 +100,17 @@ Feature
 
     compile 'com.alibaba:fastjson:latest.release'
 
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 
 •    //====================// Anko kotlin 插件 代码布局库========================
 
-    compile 'org.jetbrains.anko:anko-sdk15:0.10.1' // sdk19 sdk21 sdk23 are also available
+    compile 'org.jetbrains.anko:anko-sdk15:0.10.3' // sdk19 sdk21 sdk23 are also available
 
-    compile 'org.jetbrains.anko:anko-support-v4:0.10.1' // In case you need support-v4 bindings
+    compile 'org.jetbrains.anko:anko-support-v4:0.10.3' // In case you need support-v4 bindings
 
-    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.1' // For appcompat-v7 bindings
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.3' // For appcompat-v7 bindings
 
-    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.1' // For ankoRecyclerview bindings
+    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.3' // For ankoRecyclerview bindings
 
 •    //====================星星之间的间距========================
 
@@ -118,7 +118,7 @@ Feature
 
 •    //====================俗名：垂直跑马灯学名：垂直翻页公告========================
 
-    compile 'com.sunfusheng:marqueeview:1.3.2'
+    compile 'com.sunfusheng:marqueeview:1.3.3'
 
 •    //====================产品标签========================
 
@@ -126,11 +126,11 @@ Feature
 
 •    //====================圆圈加数字指示========================
 
-	compile 'q.rorbin:badgeview:1.1.2'
+	compile 'q.rorbin:badgeview:1.1.3'
 
 •    //====================//HTML Parser html解析========================
 
-	compile 'org.jsoup:jsoup:1.10.3'
+	compile 'org.jsoup:jsoup:1.11.2'
 
 •    //====================//用于解析Adobe After Effects动画========================
 
@@ -138,7 +138,7 @@ Feature
 
 •    //====================圆形图片========================
 
-	compile 'de.hdodenhof:circleimageview:2.1.0'
+	compile 'de.hdodenhof:circleimageview:2.2.0'
 
 •    //====================回调========================
 	
