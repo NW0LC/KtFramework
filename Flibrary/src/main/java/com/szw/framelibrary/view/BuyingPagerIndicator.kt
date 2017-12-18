@@ -166,10 +166,10 @@ class BuyingPagerIndicator @JvmOverloads constructor(context: Context, attrs: At
     private fun notifyDataSetChanged() {
 
         mTabsContainer.removeAllViews()
-        mTabCount = mPager.adapter.count
+        mTabCount = mPager.adapter?.count?:0
 
         for (i in 0 until mTabCount) {
-            val title = mPager.adapter.getPageTitle(i).toString()
+            val title = mPager.adapter?.getPageTitle(i).toString()
             val split = title.split("#".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val tab = generateTab(split)
             addTab(i, tab)

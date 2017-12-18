@@ -75,7 +75,7 @@ object SZWUtils {
         return if (!MyApplication.checkUserLogin()) {
             val login = Intent(mContext.activity, clazz)
             mContext.startActivityForResult(login, 0xc8)
-            mContext.activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
+            mContext.activity?.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
             false
         } else
             true

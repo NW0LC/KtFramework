@@ -45,7 +45,7 @@ class RecycleViewDivider
      * @param drawableId  分割线图片
      */
     constructor(context: Context, orientation: Int, drawableId: Int) : this(context, orientation) {
-        mDivider = ContextCompat.getDrawable(context, drawableId)
+        mDivider = ContextCompat.getDrawable(context, drawableId)!!
         mDividerHeight = mDivider.intrinsicHeight
     }
 

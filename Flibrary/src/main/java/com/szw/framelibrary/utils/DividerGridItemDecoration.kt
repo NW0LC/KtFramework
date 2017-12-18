@@ -33,7 +33,8 @@ class DividerGridItemDecoration : RecyclerView.ItemDecoration {
      * @param drawableId 分割线图片
      */
     constructor(context: Context, drawableId: Int) {
-        mDivider = ContextCompat.getDrawable(context, drawableId)
+
+        mDivider = ContextCompat.getDrawable(context, drawableId)!!
         mDividerHeight = mDivider.intrinsicHeight
     }
 

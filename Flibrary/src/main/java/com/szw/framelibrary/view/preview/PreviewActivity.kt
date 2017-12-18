@@ -112,7 +112,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         mPagerAdapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment = fragments[position]
             override fun getCount(): Int = fragments.size
-            override fun getItemPosition(`object`: Any?): Int = PagerAdapter.POSITION_NONE
+            override fun getItemPosition(`object`: Any): Int = PagerAdapter.POSITION_NONE
         }
         mPreviewViewpager.offscreenPageLimit = fragments.size
         mPreviewViewpager.adapter = mPagerAdapter

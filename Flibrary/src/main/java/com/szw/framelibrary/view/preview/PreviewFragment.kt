@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.ImageUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.szw.framelibrary.R
@@ -33,13 +34,13 @@ class PreviewFragment : MyBaseFragment(), View.OnClickListener {
     }
 
     override fun initView() {
-        imgUrl = arguments.getString(Arg_NormalUrl)
+        imgUrl = arguments?.getString(Arg_NormalUrl)?:""
         val photoView = rootView.findViewById<PhotoView>(R.id.photoView)
         photoView.setOnClickListener(this)
         photoView.enable()//设置可缩放
         // 加载图片
 //         setup Glide request without the into() method
-        Glide.with(context).load(imgUrl).thumbnail(Glide.with(this).load(arguments.getString(Arg_ThumbnailUrl))).listener(object : RequestListener<Drawable> {
+        Glide.with(context).load(imgUrl).thumbnail(Glide.with(this).load(arguments?.getString(Arg_ThumbnailUrl))).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                 if (loadImageLister != null)
                     loadImageLister?.failed()
@@ -52,14 +53,14 @@ class PreviewFragment : MyBaseFragment(), View.OnClickListener {
                     loadImageLister?.complete()
                 return false
             }
-        }).into(photoView) // 加载图片
+        }).transition(DrawableTransitionOptions.withCrossFade()).into(photoView) // 加载图片
     }
 
     /**
      * 保存图片
      */
     fun saveImage() {
-        Utils.saveCroppedImage(activity, bitmap, imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size - 1])
+        Utils.saveCroppedImage(activity!!, bitmap, imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size - 1])
     }
 
     fun setLoadImageLister(loadImageLister: LoadImageLister) {

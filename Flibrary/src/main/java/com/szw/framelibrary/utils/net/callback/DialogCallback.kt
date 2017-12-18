@@ -3,12 +3,10 @@ package com.szw.framelibrary.utils.net.callback
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-
 import com.lzy.okgo.model.Response
 import com.lzy.okgo.request.base.Request
-import com.szw.framelibrary.utils.net.NetEntity
+import com.szw.framelibrary.utils.net.AbsNetBean
 import com.szw.framelibrary.view.CustomProgress
-
 import java.net.UnknownHostException
 
 
@@ -19,7 +17,7 @@ import java.net.UnknownHostException
  * 修订历史：
  * ================================================
  */
-abstract class DialogCallback<T : NetEntity<*>>( val context: Context) : JsonCallback<T>() {
+abstract class DialogCallback<T : AbsNetBean>( val context: Context) : JsonCallback<T>() {
 
     override fun onStart(request: Request<T, out Request<*, *>>?) {
         super.onStart(request)

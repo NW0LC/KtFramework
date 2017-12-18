@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
 
@@ -37,8 +37,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
     testCompile 'junit:junit:4.12'
     //====================分包错误包========================
 //    compile 'com.android.support:multidex:1.0.1'
@@ -47,9 +47,9 @@ dependencies {
     //====================毛玻璃view========================
     compile 'com.github.mmin18:realtimeblurview:1.1.0'
     //====================上下拉刷新========================
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-alpha-1'
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     //====================recyclerView adapter封装类========================
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.33'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     //====================图片加载========================
     compile 'com.lzy.widget:imagepicker:0.6.1'
     compile 'com.github.bumptech.glide:glide:4.1.1'
@@ -82,22 +82,22 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.10'
     //====================json解析 ========================
     compile 'com.alibaba:fastjson:latest.release'
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.google.code.gson:gson:2.8.2'
     //====================// Anko kotlin 插件 代码布局库========================
-    compile 'org.jetbrains.anko:anko-sdk15:0.10.2' // sdk19 sdk21 sdk23 are also available
-    compile 'org.jetbrains.anko:anko-support-v4:0.10.2' // In case you need support-v4 bindings
-    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.2' // For appcompat-v7 bindings
-    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.2' // For ankoRecyclerview bindings
+    compile 'org.jetbrains.anko:anko-sdk15:0.10.3' // sdk19 sdk21 sdk23 are also available
+    compile 'org.jetbrains.anko:anko-support-v4:0.10.3' // In case you need support-v4 bindings
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.3' // For appcompat-v7 bindings
+    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.3' // For ankoRecyclerview bindings
     //====================星星之间的间距========================
     compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     //====================俗名：垂直跑马灯学名：垂直翻页公告========================
-    compile 'com.sunfusheng:marqueeview:1.3.2'
+    compile 'com.sunfusheng:marqueeview:1.3.3'
     //====================产品标签========================
     compile 'com.zhy:flowlayout-lib:1.0.3'
     //====================圆圈加数字指示========================
     compile 'q.rorbin:badgeview:1.1.3'
     //====================//HTML Parser html解析========================
-    compile 'org.jsoup:jsoup:1.10.3'
+    compile 'org.jsoup:jsoup:1.11.2'
     //====================//用于解析Adobe After Effects动画========================
     compile 'com.airbnb.android:lottie:2.1.0'
     //====================圆形图片========================
@@ -108,7 +108,7 @@ dependencies {
 //    compile 'io.reactivex:rxandroid:1.2.1'
 //    compile 'io.reactivex:rxjava:1.3.2'
     //====================崩溃页========================
-    compile 'cat.ereza:customactivityoncrash:2.1.0'
+    compile 'cat.ereza:customactivityoncrash:2.2.0'
     //====================dialog========================
     compile 'com.github.PopFisher:SmartAlertPop:c505c4b4b1'
     compile 'me.drakeet.materialdialog:library:1.3.1'

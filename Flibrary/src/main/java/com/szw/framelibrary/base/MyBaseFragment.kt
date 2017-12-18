@@ -27,8 +27,7 @@ import com.szw.framelibrary.view.CustomProgress
         val view = rootView.parent as ViewGroup
         view.removeView(rootView)
     }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initEvent()

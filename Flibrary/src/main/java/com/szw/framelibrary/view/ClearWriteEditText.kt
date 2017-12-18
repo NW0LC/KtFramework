@@ -32,7 +32,7 @@ open class ClearWriteEditText @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun init() {
-        clearDrawable = ContextCompat.getDrawable(context, R.mipmap.delete)
+        clearDrawable = ContextCompat.getDrawable(context, R.mipmap.delete)!!
         clearDrawable.setBounds(0, 0, clearDrawable.intrinsicWidth, clearDrawable.intrinsicHeight)
         setClearIconVisible(false)
         this.onFocusChangeListener = this

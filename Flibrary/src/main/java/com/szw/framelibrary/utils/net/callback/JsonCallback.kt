@@ -3,7 +3,7 @@ package com.szw.framelibrary.utils.net.callback
 
 import com.lzy.okgo.callback.AbsCallback
 import com.lzy.okgo.request.base.Request
-import com.szw.framelibrary.utils.net.NetEntity
+import com.szw.framelibrary.utils.net.AbsNetBean
 import okhttp3.Response
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
@@ -13,7 +13,7 @@ import java.lang.reflect.Type
  * 描    述：默认将返回的数据解析成需要的Bean,可以是 BaseBean，String，List，Map
  * ================================================
  */
-abstract class JsonCallback<T:NetEntity<*>> : AbsCallback<T> {
+abstract class JsonCallback<T:AbsNetBean> : AbsCallback<T> {
     private var type: Type? = null
     private var clazz: Class<T>?=null
 
