@@ -4,7 +4,6 @@ import com.google.gson.stream.JsonReader
 import com.lzy.okgo.convert.Converter
 import com.szw.framelibrary.utils.net.AbsNetBean
 import com.szw.framelibrary.utils.net.Convert
-import com.szw.framelibrary.utils.net.NetEntity
 import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
@@ -103,7 +102,7 @@ class JsonConvert<T : AbsNetBean> : Converter<T> {
 
         val rawType = type.rawType                     // 泛型的实际类型
         val typeArgument = type.actualTypeArguments[0] // 泛型的参数
-        if (rawType !== NetEntity::class.java) {
+        if (rawType !== AbsNetBean::class.java) {
             // 泛型格式如下： new JsonCallback<外层BaseBean<内层JavaBean>>(this)
             val t = Convert.fromJson<T>(jsonReader, type)
             response.close()
@@ -112,7 +111,7 @@ class JsonConvert<T : AbsNetBean> : Converter<T> {
             if (typeArgument === Void::class.java) {
                 // 泛型格式如下： new JsonCallback<LzyResponse<Void>>(this)
                 //                SimpleResponse simpleResponse = JSON.parseObject(jsonReader, SimpleResponse.class);
-                val simpleResponse = Convert.fromJson<T>(jsonReader, NetEntity::class.java)
+                val simpleResponse = Convert.fromJson<T>(jsonReader, AbsNetBean::class.java)
                 response.close()
 
                 return simpleResponse
