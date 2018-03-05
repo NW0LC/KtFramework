@@ -35,7 +35,7 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
     /**
      * 本地存储
      */
-    private var spUtils: SPUtils? = null
+    var spUtils: SPUtils? = null
 
     fun init() {
         salt = getSaltStr()?:""
@@ -48,12 +48,12 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
         //        CustomActivityOnCrash.install(this);
     }
 
-    private fun UmengInit(myApplication: MyApplication) {
+    fun UmengInit(myApplication: MyApplication) {
         MobclickAgent.setScenarioType(myApplication, MobclickAgent.EScenarioType.E_UM_NORMAL)
         MobclickAgent.setDebugMode(true)
     }
 
-    private fun initOkGo() {
+    fun initOkGo() {
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         //        HttpHeaders headers = new HttpHeaders();
         //        headers.put("commonHeaderKey1", "commonHeaderValue1");    //header不支持中文，不允许有特殊字符
