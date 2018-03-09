@@ -4,10 +4,6 @@
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
-        <!-- 友盟的统计配置 -->
-        <meta-data android:value="${UMENG_APPKEY}" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
-        <!-- end -->
     </application>
 
 </manifest>

@@ -37,8 +37,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:design:27.0.2'
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:design:27.1.0'
+    compile 'com.android.support:appcompat-v7:27.1.0'
     testCompile 'junit:junit:4.12'
     //====================分包错误包========================
 //    compile 'com.android.support:multidex:1.0.1'
@@ -49,45 +49,45 @@ dependencies {
     //====================上下拉刷新========================
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     //====================recyclerView adapter封装类========================
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     //====================图片加载========================
     compile 'com.lzy.widget:imagepicker:0.6.1'
     compile 'com.github.bumptech.glide:glide:4.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
     //    compile 'com.github.chrisbanes:PhotoView:+'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
 //    颜色资源
     compile 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
-    compile 'com.blankj:utilcode:latest.release'
+    compile 'com.blankj:utilcode:1.13.2'
     //====================网络请求========================
 //    okhttp = 'com.squareup.okhttp3:okhttp:latest.release'
 //    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'
     compile 'com.lzy.net:okgo:3.0.4'
     //====================圆头像SimpleDraweeView========================
-    compile 'com.facebook.fresco:fresco:1.5.0'
+    compile 'com.facebook.fresco:fresco:1.8.1'
     //====================lambda ========================
-    compile 'me.tatarka:gradle-retrolambda:latest.release'
+    compile 'me.tatarka:gradle-retrolambda:3.7.0'
     //====================侧滑删除 ========================
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
     //====================webView ========================
     compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
     //====================通用popWindow ========================
-    compile 'com.github.razerdp:BasePopup:latest.release'
+    compile 'com.github.razerdp:BasePopup:1.9.3'
     //====================权限申请 ========================
-    compile 'com.github.hotchemi:permissionsdispatcher:3.0.1'
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.0.1'
+    compile 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
     //====================轮播 ========================
     compile 'com.jude:rollviewpager:1.4.6'
     compile 'com.youth.banner:banner:1.4.10'
     //====================json解析 ========================
-    compile 'com.alibaba:fastjson:latest.release'
+    compile 'com.alibaba:fastjson:1.2.46'
     compile 'com.google.code.gson:gson:2.8.2'
     //====================// Anko kotlin 插件 代码布局库========================
-    compile 'org.jetbrains.anko:anko-sdk15:0.10.3' // sdk19 sdk21 sdk23 are also available
-    compile 'org.jetbrains.anko:anko-support-v4:0.10.3' // In case you need support-v4 bindings
-    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.3' // For appcompat-v7 bindings
-    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.3' // For ankoRecyclerview bindings
+    compile 'org.jetbrains.anko:anko-sdk15:0.10.4' // sdk19 sdk21 sdk23 are also available
+    compile 'org.jetbrains.anko:anko-support-v4:0.10.4' // In case you need support-v4 bindings
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.4' // For appcompat-v7 bindings
+    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.4' // For ankoRecyclerview bindings
     //====================星星之间的间距========================
     compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     //====================俗名：垂直跑马灯学名：垂直翻页公告========================
@@ -127,13 +127,8 @@ dependencies {
     //====================检查更新安装包========================
     compile 'com.github.czy1121:update:1.1.1'
 
-
-
-    //====================umeng统计========================
-    compile "com.umeng.analytics:analytics:latest.integration"
-
     //====================kotlin========================
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

@@ -16,9 +16,7 @@ import com.lzy.imagepicker.view.SystemBarTintManager;
 import com.szw.framelibrary.R;
 import com.szw.framelibrary.config.Constants;
 import com.szw.framelibrary.view.CustomProgress;
-import com.umeng.analytics.MobclickAgent;
 
-//import butterknife.ButterKnife;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
@@ -177,17 +175,6 @@ public abstract class BaseActivity extends AppCompatActivity implements AbsBaseA
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         BaseActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
-    public void onResume() {
-        super.onResume();
-//      友盟统计
-        MobclickAgent.onResume(this);
-    }
-    public void onPause() {
-        super.onPause();
-//      友盟统计
-        MobclickAgent.onPause(this);
-    }
-
     @Override
     public void onDestroy() {
 

@@ -14,7 +14,6 @@ import com.lzy.okgo.cookie.store.DBCookieStore
 import com.lzy.okgo.https.HttpsUtils
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor
 import com.szw.framelibrary.entities.AbsUser
-import com.umeng.analytics.MobclickAgent
 import okhttp3.OkHttpClient
 import java.lang.Exception
 import java.security.cert.CertificateException
@@ -41,16 +40,10 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
         salt = getSaltStr()?:""
         Fresco.initialize(this)
         Utils.init(this)
-        UmengInit(this)
         spUtils = SPUtils.getInstance(packageName)
         initOkGo()
         //Install  程序崩溃日志初始化
         //        CustomActivityOnCrash.install(this);
-    }
-
-    fun UmengInit(myApplication: MyApplication) {
-        MobclickAgent.setScenarioType(myApplication, MobclickAgent.EScenarioType.E_UM_NORMAL)
-        MobclickAgent.setDebugMode(true)
     }
 
     fun initOkGo() {
