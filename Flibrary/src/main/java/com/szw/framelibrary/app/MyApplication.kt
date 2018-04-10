@@ -152,7 +152,6 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
         //===================================================================================================================
         var user: AbsUser? = null
 
-
         //判断 用户是否登录
         fun checkUserLogin(): Boolean = user != null && "" != user?.userId?:""
 
