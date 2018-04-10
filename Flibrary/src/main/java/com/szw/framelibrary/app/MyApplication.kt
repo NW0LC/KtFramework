@@ -78,7 +78,7 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
         //方法一：信任所有证书,不安全有风险
         val sslParams1 = HttpsUtils.getSslSocketFactory()
         //方法二：自定义信任规则，校验服务端证书
-        val sslParams2 = HttpsUtils.getSslSocketFactory(SafeTrustManager())
+//        val sslParams2 = HttpsUtils.getSslSocketFactory(SafeTrustManager())
         //方法三：使用预埋证书，校验服务端证书（自签名证书）
         //HttpsUtils.SSLParams sslParams3 = HttpsUtils.getSslSocketFactory(getAssets().open("srca.cer"));
         //方法四：使用bks证书和密码管理客户端证书（双向认证），使用预埋证书，校验服务端证书（自签名证书）

@@ -42,7 +42,7 @@ object DialogUtils {
             val intent = Intent(
                     Intent.ACTION_CALL,
                     Uri.parse("tel:" + str1))
-            context.PermissionCallPhoneWithCheck(intent, false)
+            context.permissionCallPhoneWithCheck(intent, false)
             dialog?.dismiss()
         })
         dialog?.setCanceledOnTouchOutside(true)

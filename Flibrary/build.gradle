@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
-    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 19
@@ -14,15 +14,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
-
-
-        renderscriptTargetApi 25
+        renderscriptTargetApi 27
         renderscriptSupportModeEnabled true    // Enable RS support
-
-        //        设置友盟统计key ,可在build里面
-        manifestPlaceholders = [
-                UMENG_APPKEY : "", //友盟key
-        ]
     }
     buildTypes {
         release {
@@ -33,103 +26,96 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:design:27.1.0'
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    testImplementation 'junit:junit:4.12'
     //====================分包错误包========================
-//    compile 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
     //====================类似相对布局========================
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     //====================毛玻璃view========================
-    compile 'com.github.mmin18:realtimeblurview:1.1.0'
+    implementation 'com.github.mmin18:realtimeblurview:1.1.0'
     //====================上下拉刷新========================
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     //====================recyclerView adapter封装类========================
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
     //====================图片加载========================
-    compile 'com.lzy.widget:imagepicker:0.6.1'
-    compile 'com.github.bumptech.glide:glide:4.1.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
-    //    compile 'com.github.chrisbanes:PhotoView:+'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    implementation 'com.lzy.widget:imagepicker:0.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.1.1'
+    kapt 'com.github.bumptech.glide:compiler:4.1.1'
+    //    implementation 'com.github.chrisbanes:PhotoView:+'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
 //    颜色资源
-    compile 'com.github.vilyever:AndroidResource:1.2.1'
+    implementation 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
-    compile 'com.blankj:utilcode:1.13.2'
+    implementation 'com.blankj:utilcode:1.13.10'
     //====================网络请求========================
 //    okhttp = 'com.squareup.okhttp3:okhttp:latest.release'
 //    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'
-    compile 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.lzy.net:okgo:3.0.4'
     //====================圆头像SimpleDraweeView========================
-    compile 'com.facebook.fresco:fresco:1.8.1'
+    implementation 'com.facebook.fresco:fresco:1.8.1'
     //====================lambda ========================
-    compile 'me.tatarka:gradle-retrolambda:3.7.0'
+    implementation 'me.tatarka:gradle-retrolambda:3.7.0'
     //====================侧滑删除 ========================
-    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
     //====================webView ========================
-    compile 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
     //====================通用popWindow ========================
-    compile 'com.github.razerdp:BasePopup:1.9.3'
+    implementation 'com.github.razerdp:BasePopup:1.9.3'
     //====================权限申请 ========================
-    compile 'com.github.hotchemi:permissionsdispatcher:3.1.0'
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
     //====================轮播 ========================
-    compile 'com.jude:rollviewpager:1.4.6'
-    compile 'com.youth.banner:banner:1.4.10'
+    implementation 'com.jude:rollviewpager:1.4.6'
+    implementation 'com.youth.banner:banner:1.4.10'
     //====================json解析 ========================
-    compile 'com.alibaba:fastjson:1.2.46'
-    compile 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.alibaba:fastjson:1.2.47'
+    implementation 'com.google.code.gson:gson:2.8.2'
     //====================// Anko kotlin 插件 代码布局库========================
-    compile 'org.jetbrains.anko:anko-sdk15:0.10.4' // sdk19 sdk21 sdk23 are also available
-    compile 'org.jetbrains.anko:anko-support-v4:0.10.4' // In case you need support-v4 bindings
-    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.4' // For appcompat-v7 bindings
-    compile 'org.jetbrains.anko:anko-recyclerview-v7:0.10.4' // For ankoRecyclerview bindings
+    implementation 'org.jetbrains.anko:anko-sdk15:0.10.4' // sdk19 sdk21 sdk23 are also available
+    implementation 'org.jetbrains.anko:anko-support-v4:0.10.4' // In case you need support-v4 bindings
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.4' // For appcompat-v7 bindings
+    implementation 'org.jetbrains.anko:anko-recyclerview-v7:0.10.4' // For ankoRecyclerview bindings
     //====================星星之间的间距========================
-    compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
+    implementation 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     //====================俗名：垂直跑马灯学名：垂直翻页公告========================
-    compile 'com.sunfusheng:marqueeview:1.3.3'
+    implementation 'com.sunfusheng:marqueeview:1.3.3'
     //====================产品标签========================
-    compile 'com.zhy:flowlayout-lib:1.0.3'
+    implementation 'com.zhy:flowlayout-lib:1.0.3'
     //====================圆圈加数字指示========================
-    compile 'q.rorbin:badgeview:1.1.3'
+    implementation 'q.rorbin:badgeview:1.1.3'
     //====================//HTML Parser html解析========================
-    compile 'org.jsoup:jsoup:1.11.2'
+    implementation 'org.jsoup:jsoup:1.11.2'
     //====================//用于解析Adobe After Effects动画========================
-    compile 'com.airbnb.android:lottie:2.1.0'
+//    compile 'com.airbnb.android:lottie:2.5.2'
     //====================圆形图片========================
-    compile 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     //====================回调========================
-    compile 'com.hwangjr.rxbus:rxbus:2.0.0'
+    implementation 'com.hwangjr.rxbus:rxbus:2.0.0'
     //====================RxAndroid========================
-//    compile 'io.reactivex:rxandroid:1.2.1'
-//    compile 'io.reactivex:rxjava:1.3.2'
+//    implementation 'io.reactivex:rxandroid:1.2.1'
+//    implementation 'io.reactivex:rxjava:1.3.2'
     //====================崩溃页========================
-    compile 'cat.ereza:customactivityoncrash:2.2.0'
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
     //====================dialog========================
-    compile 'com.github.PopFisher:SmartAlertPop:c505c4b4b1'
-    compile 'me.drakeet.materialdialog:library:1.3.1'
+    implementation 'com.github.PopFisher:SmartAlertPop:c505c4b4b1'
+    implementation 'me.drakeet.materialdialog:library:1.3.1'
     //====================flyco========================
     //tabLayout
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     //圆角view
-    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
     //====================ButterKnife========================
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //====================上下滑动选择器========================
-    compile 'com.bigkoo:pickerview:2.1.1'
+    implementation 'com.bigkoo:pickerview:2.1.1'
     //====================沉浸状态栏========================
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.4'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
     //====================检查更新安装包========================
-    compile 'com.github.czy1121:update:1.1.1'
+    implementation 'com.github.czy1121:update:1.1.1'
 
-    //====================kotlin========================
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
 }

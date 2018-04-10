@@ -33,13 +33,13 @@ internal interface AbsBaseActivity {
      * BaseActivityPermissionsDispatcher.locationAndSMSWithCheck(this);
      * BaseActivityPermissionsDispatcher.callPhoneWithCheck(this);
      */
-    fun PermissionCameraWithCheck(intent: Intent?, isService: Boolean) //拍照与读取内存卡，并启动意图，null 不启动
+    fun permissionCameraWithCheck(intent: Intent?, isService: Boolean) //拍照与读取内存卡，并启动意图，null 不启动
 
-    fun PermissionLocationWithCheck(intent: Intent?, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
-    fun PermissionSMSWithCheck(intent: Intent?, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
-    fun PermissionCallPhoneWithCheck(intent: Intent?, isService: Boolean) //电话，并启动意图，null 不启动
-    fun PermissionCameraWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //拍照与读取内存卡，并启动意图，null 不启动
-    fun PermissionLocationWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
-    fun PermissionSMSWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
-    fun PermissionCallPhoneWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //电话，并启动意图，null 不启动
+    fun permissionLocationWithCheck(intent: Intent?, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
+    fun permissionSMSWithCheck(intent: Intent?, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
+    fun permissionCallPhoneWithCheck(intent: Intent?, isService: Boolean) //电话，并启动意图，null 不启动
+    fun permissionCameraWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //拍照与读取内存卡，并启动意图，null 不启动
+    fun permissionLocationWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
+    fun permissionSMSWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //定位及读取短信。并启动意图，null 不启动
+    fun permissionCallPhoneWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) //电话，并启动意图，null 不启动
 }
