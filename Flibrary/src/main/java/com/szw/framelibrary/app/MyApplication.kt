@@ -3,18 +3,24 @@ package com.szw.framelibrary.app
 
 import android.content.Context
 import android.support.multidex.MultiDexApplication
+import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.Utils
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.lzy.okgo.OkGo
 import com.lzy.okgo.cache.CacheEntity
 import com.lzy.okgo.cache.CacheMode
+import com.lzy.okgo.callback.FileCallback
 import com.lzy.okgo.cookie.CookieJarImpl
 import com.lzy.okgo.cookie.store.DBCookieStore
 import com.lzy.okgo.https.HttpsUtils
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor
+import com.lzy.okgo.model.Response
 import com.szw.framelibrary.entities.AbsUser
+import com.szw.framelibrary.utils.SZWUtils
+import okhttp3.Callback
 import okhttp3.OkHttpClient
+import java.io.File
 import java.lang.Exception
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
@@ -95,6 +101,7 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE).retryCount = 3                               //全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
         //                .addCommonHeaders(headers)                      //全局公共头
         //                .addCommonParams(params);                       //全局公共参数
+        SZWUtils.security()
     }
 
     /**

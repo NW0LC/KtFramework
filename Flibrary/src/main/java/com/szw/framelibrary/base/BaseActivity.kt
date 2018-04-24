@@ -27,6 +27,7 @@ import android.Manifest.permission.READ_SMS
 import android.Manifest.permission.RECEIVE_SMS
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
+import com.szw.framelibrary.utils.SZWUtils
 
 
 /**
@@ -39,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         //        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
         //            finish();
         //            return;
@@ -56,7 +58,7 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
+        SZWUtils.security()
     }
 
     override fun initBar() {

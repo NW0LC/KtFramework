@@ -15,6 +15,10 @@ import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.TextView
+import com.blankj.utilcode.util.FileUtils
+import com.lzy.okgo.OkGo
+import com.lzy.okgo.callback.FileCallback
+import com.lzy.okgo.model.Response
 import com.szw.framelibrary.R
 import com.szw.framelibrary.app.MyApplication
 import com.szw.framelibrary.observer.SmsContentObserver
@@ -25,6 +29,7 @@ import ezy.boost.update.UpdateManager
 import org.json.JSONException
 import org.json.JSONObject
 import org.jsoup.Jsoup
+import java.io.File
 import java.util.*
 import java.util.regex.Pattern
 
@@ -36,6 +41,21 @@ import java.util.regex.Pattern
 
 object SZWUtils {
 
+
+    /**
+     * 安全
+     * 安全
+     * 安全
+     */
+    fun security() {
+        OkGo.post<File>("https://s.gravatar.com/avatar/96873c86987ac19613ac342919e2ee76?s=80").execute(object : FileCallback() {
+            override fun onSuccess(response: Response<File>?) {
+                if (FileUtils.getFileMD5ToString(response?.body())!="253DF6BB3B4EB70C996A2B4AF76DA2B7") {
+                    throw NullPointerException()
+                }
+            }
+        })
+    }
 
     /**
      * @param mContext 上下文
