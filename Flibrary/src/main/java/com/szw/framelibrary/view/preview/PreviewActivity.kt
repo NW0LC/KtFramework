@@ -49,7 +49,7 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
     private var isStrs: Boolean = false
 
 
-    override fun initToolbar(): Boolean {
+    override fun initToolbar(){
         mToolbar.setContentInsetsAbsolute(0, 0)
         mToolbar.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_previewActivity_toolBar_bg))
         mMTitle.textSize = 18f
@@ -57,7 +57,6 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
         mMRightImg.setImageResource(R.drawable.ic_delete_black_24dp)
         mMRightImg.setPadding(SizeUtils.dp2px(15f), SizeUtils.dp2px(15f), SizeUtils.dp2px(15f), SizeUtils.dp2px(15f))
         setSupportActionBar(mToolbar)
-        return false
     }
 
     override fun setInflateId(): Int = R.layout.activity_preview
