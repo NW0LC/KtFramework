@@ -1,5 +1,6 @@
 package com.szw.framelibrary.base
 
+import android.Manifest.permission.*
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.Intent
@@ -19,13 +20,6 @@ import com.szw.framelibrary.view.CustomProgress
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.Manifest.permission.CALL_PHONE
-import android.Manifest.permission.CAMERA
-import android.Manifest.permission.READ_SMS
-import android.Manifest.permission.RECEIVE_SMS
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.annotation.SuppressLint
 import com.szw.framelibrary.utils.SZWUtils
 
@@ -53,41 +47,12 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         try {
             init()
             init(savedInstanceState)
-            initBar()
+            initToolbar()
             RxBus.get().register(this)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         SZWUtils.security()
-    }
-
-    override fun initBar() {
-        if (initToolbar()) {
-            // 4.4及以上版本开启
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                setTranslucentStatus(true)
-            }
-
-            val tintManager = SystemBarTintManager(this)
-            tintManager.isStatusBarTintEnabled = true
-            tintManager.setNavigationBarTintEnabled(true)
-
-            // 自定义颜色
-            tintManager.setTintColor(ContextCompat.getColor(mContext, R.color.colorPrimary))
-        }
-    }
-
-    @TargetApi(19)
-    private fun setTranslucentStatus(on: Boolean) {
-        val win = window
-        val winParams = win.attributes
-        val bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-        if (on) {
-            winParams.flags = winParams.flags or bits
-        } else {
-            winParams.flags = winParams.flags and bits.inv()
-        }
-        win.attributes = winParams
     }
 
     /**
@@ -134,6 +99,17 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         permissionCallPhoneWithPermissionCheck(intent, -1, isService)
     }
 
+    override fun permissionWAndRStorageWithCheck(intent: Intent?, isService: Boolean) {
+        permissionWAndRWithPermissionCheck(intent, -1, isService, Runnable {  })
+    }
+
+    override fun permissionWAndRStorageWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) {
+        permissionWAndRWithPermissionCheck(intent, requestCode, isService,Runnable {  })
+    }
+
+    override fun permissionWAndRStorageWithCheck(listener: Runnable) {
+        permissionWAndRWithPermissionCheck(null, -1, false,listener)
+    }
     @NeedsPermission(CAMERA, WRITE_EXTERNAL_STORAGE)
     fun permissionCamera(intent: Intent?, requestCode: Int, isService: Boolean) {
         startAction(intent, isService, if (requestCode == -1) Constants.Permission.Camera else requestCode)
@@ -151,6 +127,12 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
 
     @NeedsPermission(CALL_PHONE)
     fun permissionCallPhone(intent: Intent?, requestCode: Int, isService: Boolean) {
+        startAction(intent, isService, if (requestCode == -1) Constants.Permission.Phone else requestCode)
+    }
+
+    @NeedsPermission(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
+    fun permissionWAndR(intent: Intent?, requestCode: Int, isService: Boolean,listener:Runnable) {
+        listener.run()
         startAction(intent, isService, if (requestCode == -1) Constants.Permission.Phone else requestCode)
     }
 

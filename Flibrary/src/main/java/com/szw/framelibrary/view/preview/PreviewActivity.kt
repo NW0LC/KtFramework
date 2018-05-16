@@ -64,10 +64,12 @@ class PreviewActivity<T : PreviewObject> : BaseActivity(), View.OnClickListener,
 
     @Throws(Exception::class)
     override fun init() {
-        bindViews()
-        iniEvent()
-        initFragment()
-        initPager()
+        permissionWAndRStorageWithCheck(Runnable {
+            bindViews()
+            iniEvent()
+            initFragment()
+            initPager()
+        })
     }
 
     private fun iniEvent() {

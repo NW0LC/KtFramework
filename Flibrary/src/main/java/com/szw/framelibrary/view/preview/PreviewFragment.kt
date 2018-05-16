@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.ImageUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -20,6 +21,7 @@ import com.szw.framelibrary.R
 import com.szw.framelibrary.base.MyBaseFragment
 import com.szw.framelibrary.utils.Utils
 import com.szw.framelibrary.view.photoview.PhotoView
+import java.io.File
 import javax.microedition.khronos.opengles.GL10
 
 
@@ -57,8 +59,17 @@ class PreviewFragment : MyBaseFragment(), View.OnClickListener {
             override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>, dataSource: DataSource, isFirstResource: Boolean): Boolean {
                 bitmap = ImageUtils.drawable2Bitmap(resource)
                 if (isLargeImg(bitmap.width,bitmap.height)) {
-                    scaleImageView.setImage(ImageSource.bitmap(ImageUtils.drawable2Bitmap(resource)))
+                    scaleImageView.visibility=View.VISIBLE
+                    photoView.visibility=View.GONE
+                    val path = context?.cacheDir?.path + "/${context?.packageName}"+
+                            imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size - 1]
+                    if (FileIOUtils.writeFileFromBytesByStream(path
+                                    ,ImageUtils.bitmap2Bytes(bitmap,Bitmap.CompressFormat.JPEG))) {
+                        scaleImageView.setImage(ImageSource.uri(File(path).path))
+                    }
                 }else{
+                    scaleImageView.visibility=View.GONE
+                    photoView.visibility=View.VISIBLE
                     photoView.setImageDrawable(resource)
                 }
                 if (loadImageLister != null)
