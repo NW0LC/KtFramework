@@ -19,6 +19,10 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.ImageViewState
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.microedition.khronos.opengles.GL10
+import android.opengl.GLES10
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Utils.init(this)
-        image.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM);
-        image.minScale = 1.0F;
+        image.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM)
+        image.minScale = 1F
+
         Glide.with(this).load("http://wx2.sinaimg.cn/mw690/5ffb33dcgy1fih6nytd4kj20sg2dcqli.jpg").listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                 ToastUtils.showShort("onLoadFailed")
@@ -36,9 +41,22 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>, dataSource: DataSource, isFirstResource: Boolean): Boolean {
-                ToastUtils.showShort("onResourceReady")
+
+                val bitmap = ImageUtils.drawable2Bitmap(resource)
+                if (!isNeedCloseHardwareAcceleration(bitmap.width,bitmap.height)) {
+                    image.setImage(ImageSource.bitmap(bitmap))
+                }
                 return false
             }
-        }).transition(DrawableTransitionOptions.withCrossFade()).into(imageveiw) // 加载图片
+        }).transition(DrawableTransitionOptions.withCrossFade()).submit()// 加载图片
+    }
+
+    //added by Jack for handle exception "Bitmap too large to be uploaded into a texture".
+    fun isNeedCloseHardwareAcceleration(w: Int, h: Int): Boolean {
+        val maxSize = IntArray(1)
+        GLES10.glGetIntegerv(GL10.GL_MAX_TEXTURE_SIZE, maxSize, 0)
+
+        return maxSize[0] < h || maxSize[0] < w
+
     }
 }
