@@ -28,6 +28,7 @@ import android.opengl.GLES10
 import android.os.Environment
 import android.view.View
 import com.blankj.utilcode.util.FileIOUtils
+import com.szw.framelibrary.view.preview.PreviewActivity
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import java.io.File
@@ -39,7 +40,12 @@ class MainActivity : AppCompatActivity() {
         // 加载图片
 //         setup Glide request without the into() method
         val imgUrl = "https://img.alicdn.com/imgextra/i3/2688814083/TB2CKmSacbI8KJjy1zdXXbe1VXa_!!2688814083.jpg"
-
+        val intent = Intent(this, PreviewActivity::class.java)
+        val images = ArrayList<String>()
+        images.add(imgUrl)
+        intent.putExtra(PreviewActivity.PREVIEW_INTENT_IMAGES, images)
+        intent.putExtra(PreviewActivity.PREVIEW_INTENT_SHOW_NUM, false)
+        startActivity(intent)
         Glide.with(this).load(imgUrl).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                 return false

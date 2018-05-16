@@ -16,11 +16,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.davemorrissey.labs.subscaleview.ImageSource
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.szw.framelibrary.R
 import com.szw.framelibrary.base.MyBaseFragment
 import com.szw.framelibrary.utils.Utils
-import com.szw.framelibrary.view.photoview.PhotoView
+import kotlinx.android.synthetic.main.fragment_preview.*
+import org.jetbrains.anko.support.v4.act
 import java.io.File
 import javax.microedition.khronos.opengles.GL10
 
@@ -33,23 +33,17 @@ import javax.microedition.khronos.opengles.GL10
 class PreviewFragment : MyBaseFragment(), View.OnClickListener {
     private var loadImageLister: LoadImageLister? = null
     lateinit var bitmap: Bitmap
-    private var imgUrl: String=""
+    private var imgUrl: String = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_preview, container, false)
         return rootView
     }
 
     override fun initView() {
-        imgUrl = arguments?.getString(Arg_NormalUrl)?:""
-        val scaleImageView = rootView.findViewById<SubsamplingScaleImageView>(R.id.scaleImageView)
-        val photoView = rootView.findViewById<PhotoView>(R.id.photoView)
+        imgUrl = arguments?.getString(Arg_NormalUrl) ?: ""
         photoView.setOnClickListener(this)
-        photoView.enable()//设置可缩放
-        scaleImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM);
-        scaleImageView.minScale = 1.0F
         // 加载图片
-//         setup Glide request without the into() method
-        Glide.with(context).load(imgUrl).thumbnail(Glide.with(this).load(arguments?.getString(Arg_ThumbnailUrl))).listener(object : RequestListener<Drawable> {
+        Glide.with(this).load(imgUrl).thumbnail(Glide.with(this).load(arguments?.getString(Arg_ThumbnailUrl))).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
                 if (loadImageLister != null)
                     loadImageLister?.failed()
@@ -57,20 +51,20 @@ class PreviewFragment : MyBaseFragment(), View.OnClickListener {
             }
 
             override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable>, dataSource: DataSource, isFirstResource: Boolean): Boolean {
-                bitmap = ImageUtils.drawable2Bitmap(resource)
-                if (isLargeImg(bitmap.width,bitmap.height)) {
-                    scaleImageView.visibility=View.VISIBLE
-                    photoView.visibility=View.GONE
-                    val path = context?.cacheDir?.path + "/${context?.packageName}"+
+                val bitmap = ImageUtils.drawable2Bitmap(resource)
+                if (isLargeImg(bitmap.width, bitmap.height)) {
+                    photoView.visibility = View.VISIBLE
+                    image.visibility = View.GONE
+                    val path = act.cacheDir.path + "/${act.packageName}" +
                             imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[imgUrl.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size - 1]
                     if (FileIOUtils.writeFileFromBytesByStream(path
-                                    ,ImageUtils.bitmap2Bytes(bitmap,Bitmap.CompressFormat.JPEG))) {
-                        scaleImageView.setImage(ImageSource.uri(File(path).path))
+                                    , ImageUtils.bitmap2Bytes(bitmap, Bitmap.CompressFormat.JPEG))) {
+                        photoView.setImage(ImageSource.uri(File(path).path))
                     }
-                }else{
-                    scaleImageView.visibility=View.GONE
-                    photoView.visibility=View.VISIBLE
-                    photoView.setImageDrawable(resource)
+                } else {
+                    photoView.visibility = View.GONE
+                    image.visibility = View.VISIBLE
+                    image.setImageDrawable(resource)
                 }
                 if (loadImageLister != null)
                     loadImageLister?.complete()
@@ -112,6 +106,7 @@ class PreviewFragment : MyBaseFragment(), View.OnClickListener {
             return maxSize[0] < h || maxSize[0] < w
 
         }
+
         fun Instance(NormalUrl: String, ThumbnailUrl: String): PreviewFragment {
             val previewFragment = PreviewFragment()
             val args = Bundle()
