@@ -40,11 +40,11 @@ dependencies {
     //====================上下拉刷新========================
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     //====================recyclerView adapter封装类========================
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     //====================图片加载========================
     implementation 'com.lzy.widget:imagepicker:0.6.1'
-    implementation 'com.github.bumptech.glide:glide:4.1.1'
-    kapt 'com.github.bumptech.glide:compiler:4.1.1'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    kapt 'com.github.bumptech.glide:compiler:4.5.0'
     //    implementation 'com.github.chrisbanes:PhotoView:+'
     //大图片加载和缩放
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
@@ -52,7 +52,7 @@ dependencies {
 //    颜色资源
     implementation 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
-    implementation 'com.blankj:utilcode:1.13.10'
+    implementation 'com.blankj:utilcode:1.16.0'
     //====================网络请求========================
 //    okhttp = 'com.squareup.okhttp3:okhttp:latest.release'
 //    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'
@@ -66,7 +66,7 @@ dependencies {
     //====================webView ========================
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
     //====================通用popWindow ========================
-    implementation 'com.github.razerdp:BasePopup:1.9.3'
+    implementation 'com.github.razerdp:BasePopup:1.9.4'
     //====================权限申请 ========================
     implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
     kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
@@ -75,12 +75,12 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     //====================json解析 ========================
     implementation 'com.alibaba:fastjson:1.2.47'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     //====================// Anko kotlin 插件 代码布局库========================
-    implementation 'org.jetbrains.anko:anko-sdk15:0.10.4' // sdk19 sdk21 sdk23 are also available
-    implementation 'org.jetbrains.anko:anko-support-v4:0.10.4' // In case you need support-v4 bindings
-    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.4' // For appcompat-v7 bindings
-    implementation 'org.jetbrains.anko:anko-recyclerview-v7:0.10.4' // For ankoRecyclerview bindings
+    implementation 'org.jetbrains.anko:anko-sdk15:0.10.5' // sdk19 sdk21 sdk23 are also available
+    implementation 'org.jetbrains.anko:anko-support-v4:0.10.5' // In case you need support-v4 bindings
+    implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.5' // For appcompat-v7 bindings
+    implementation 'org.jetbrains.anko:anko-recyclerview-v7:0.10.5' // For ankoRecyclerview bindings
     //====================星星之间的间距========================
     implementation 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     //====================俗名：垂直跑马灯学名：垂直翻页公告========================
