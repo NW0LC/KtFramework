@@ -14,11 +14,16 @@ import android.support.v4.content.ContextCompat
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.blankj.utilcode.util.FileUtils
 import com.lzy.okgo.OkGo
 import com.lzy.okgo.callback.FileCallback
 import com.lzy.okgo.model.Response
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshHeader
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.szw.framelibrary.R
 import com.szw.framelibrary.app.MyApplication
 import com.szw.framelibrary.observer.SmsContentObserver
@@ -456,5 +461,26 @@ object SZWUtils {
         info.size = o.optLong("size", 0)
 
         return info
+    }
+    /**
+     * 设置刷新 及控制 刷新头 的显示和隐藏
+     *
+     */
+    fun setRefreshAndHeaderCtrl(listener: OnRefreshListener, header: View, refreshLayout: SmartRefreshLayout) {
+
+        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
+            override fun onHeaderPulling(headerView: RefreshHeader?, percent: Float, offset: Int, bottomHeight: Int, extendHeight: Int) {
+                if (offset == 0)
+                    header.visibility = View.GONE
+                else
+                    header.visibility = View.VISIBLE
+            }
+
+            override fun onHeaderReleasing(headerView: RefreshHeader?, percent: Float, offset: Int, footerHeight: Int, extendHeight: Int) {
+                if (offset == 0)
+                    header.visibility = View.GONE
+            }
+        })
+        refreshLayout.setOnRefreshListener(listener)
     }
 }

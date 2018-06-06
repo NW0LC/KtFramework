@@ -41,7 +41,11 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         //        }
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        setContentView(setInflateId())
+        if (setInflateId() == 0)
+            setContentView(setInflateId())
+        else
+            setContentView(setInflateView())
+
         mContext = this
         //        ButterKnife.bind(this);
         try {
@@ -100,16 +104,17 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
     }
 
     override fun permissionWAndRStorageWithCheck(intent: Intent?, isService: Boolean) {
-        permissionWAndRWithPermissionCheck(intent, -1, isService, Runnable {  })
+        permissionWAndRWithPermissionCheck(intent, -1, isService, Runnable { })
     }
 
     override fun permissionWAndRStorageWithCheck(intent: Intent?, requestCode: Int, isService: Boolean) {
-        permissionWAndRWithPermissionCheck(intent, requestCode, isService,Runnable {  })
+        permissionWAndRWithPermissionCheck(intent, requestCode, isService, Runnable { })
     }
 
     override fun permissionWAndRStorageWithCheck(listener: Runnable) {
-        permissionWAndRWithPermissionCheck(null, -1, false,listener)
+        permissionWAndRWithPermissionCheck(null, -1, false, listener)
     }
+
     @NeedsPermission(CAMERA, WRITE_EXTERNAL_STORAGE)
     fun permissionCamera(intent: Intent?, requestCode: Int, isService: Boolean) {
         startAction(intent, isService, if (requestCode == -1) Constants.Permission.Camera else requestCode)
@@ -131,7 +136,7 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
     }
 
     @NeedsPermission(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
-    fun permissionWAndR(intent: Intent?, requestCode: Int, isService: Boolean,listener:Runnable) {
+    fun permissionWAndR(intent: Intent?, requestCode: Int, isService: Boolean, listener: Runnable) {
         listener.run()
         startAction(intent, isService, if (requestCode == -1) Constants.Permission.Phone else requestCode)
     }

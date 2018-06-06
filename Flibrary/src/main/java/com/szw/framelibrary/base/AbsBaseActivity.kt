@@ -2,6 +2,7 @@ package com.szw.framelibrary.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 
 /**
  * Created by 史忠文
@@ -24,6 +25,10 @@ internal interface AbsBaseActivity {
      * 设置布局id
      */
     fun setInflateId(): Int
+    /**
+     * 设置布局View
+     */
+    fun setInflateView(): View
 
     /**
      * 设置权限
