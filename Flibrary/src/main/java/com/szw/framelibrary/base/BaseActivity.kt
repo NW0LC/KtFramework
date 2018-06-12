@@ -1,27 +1,20 @@
 package com.szw.framelibrary.base
 
 import android.Manifest.permission.*
-import android.annotation.TargetApi
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
-
 import com.hwangjr.rxbus.RxBus
-import com.lzy.imagepicker.view.SystemBarTintManager
-import com.szw.framelibrary.R
 import com.szw.framelibrary.config.Constants
+import com.szw.framelibrary.utils.SZWUtils
 import com.szw.framelibrary.view.CustomProgress
-
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
-
-import android.annotation.SuppressLint
-import com.szw.framelibrary.utils.SZWUtils
 
 
 /**
@@ -59,6 +52,9 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         SZWUtils.security()
     }
 
+    override fun setInflateView(): View {
+        return View(this)
+    }
     /**
      * 视图，组件,数据的初始化
      */

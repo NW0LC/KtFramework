@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 123
-        versionName "1.2.21"
+        versionName "1.2.26"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -32,9 +32,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
     //====================分包错误包========================
-//    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.3'
     //====================类似相对布局========================
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     //====================毛玻璃view========================
     implementation 'com.github.mmin18:realtimeblurview:1.1.0'
     //====================上下拉刷新========================
@@ -42,7 +42,8 @@ dependencies {
     //====================recyclerView adapter封装类========================
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     //====================图片加载========================
-    implementation 'com.lzy.widget:imagepicker:0.6.1'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+//    implementation 'com.lzy.widget:imagepicker:0.6.1'//弃用
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
     //    implementation 'com.github.chrisbanes:PhotoView:+'
@@ -52,13 +53,13 @@ dependencies {
 //    颜色资源
     implementation 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
-    implementation 'com.blankj:utilcode:1.16.0'
+    implementation 'com.blankj:utilcode:1.16.4'
     //====================网络请求========================
 //    okhttp = 'com.squareup.okhttp3:okhttp:latest.release'
 //    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'
     implementation 'com.lzy.net:okgo:3.0.4'
     //====================圆头像SimpleDraweeView========================
-    implementation 'com.facebook.fresco:fresco:1.8.1'
+    implementation 'com.facebook.fresco:fresco:1.9.0'
     //====================lambda ========================
     implementation 'me.tatarka:gradle-retrolambda:3.7.0'
     //====================侧滑删除 ========================
@@ -68,8 +69,8 @@ dependencies {
     //====================通用popWindow ========================
     implementation 'com.github.razerdp:BasePopup:1.9.4'
     //====================权限申请 ========================
-    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
-    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.2.0'
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.2.0'
     //====================轮播 ========================
     implementation 'com.jude:rollviewpager:1.4.6'
     implementation 'com.youth.banner:banner:1.4.10'
@@ -90,7 +91,7 @@ dependencies {
     //====================圆圈加数字指示========================
     implementation 'q.rorbin:badgeview:1.1.3'
     //====================//HTML Parser html解析========================
-    implementation 'org.jsoup:jsoup:1.11.2'
+    implementation 'org.jsoup:jsoup:1.11.3'
     //====================//用于解析Adobe After Effects动画========================
 //    compile 'com.airbnb.android:lottie:2.5.2'
     //====================圆形图片========================
@@ -116,6 +117,8 @@ dependencies {
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
     //====================检查更新安装包========================
     implementation 'com.github.czy1121:update:1.1.1'
+    implementation 'com.shuyu:GSYVideoPlayer:5.0.0-beta'
+    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 
 
 }
