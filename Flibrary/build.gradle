@@ -117,8 +117,10 @@ dependencies {
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.4'
     //====================检查更新安装包========================
     implementation 'com.github.czy1121:update:1.1.1'
-    implementation 'com.shuyu:GSYVideoPlayer:5.0.0-beta'
-    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
+    //====================视频播放库========================
+//    implementation 'com.shuyu:GSYVideoPlayer:5.0.0-beta'
+    //====================带数字进度条========================
+//    implementation 'com.daimajia.numberprogressbar:library:1.4@aar'
 
 
 }
