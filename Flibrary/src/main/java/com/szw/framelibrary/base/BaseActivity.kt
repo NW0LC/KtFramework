@@ -34,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         //        }
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-        if (setInflateId() == 0)
+        if (setInflateId() != 0)
             setContentView(setInflateId())
         else
             setContentView(setInflateView())
