@@ -1,12 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = '1.2.41'
-        repositories {
-            mavenCentral()
-            jcenter()
-            maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-            maven { url "https://jitpack.io" }
-            google()
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url "https://jitpack.io" }
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
@@ -17,7 +17,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url "https://jitpack.io" }
         mavenCentral()
         google()

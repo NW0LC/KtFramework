@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 123
-        versionName "1.2.26"
+        versionCode 124
+        versionName "1.2.27"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -46,10 +46,12 @@ dependencies {
 //    implementation 'com.lzy.widget:imagepicker:0.6.1'//弃用
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     kapt 'com.github.bumptech.glide:compiler:4.5.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     //    implementation 'com.github.chrisbanes:PhotoView:+'
     //大图片加载和缩放
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'){
+        exclude group: 'com.android.support'
+    }
 //    颜色资源
     implementation 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
@@ -69,10 +71,11 @@ dependencies {
     //====================通用popWindow ========================
     implementation 'com.github.razerdp:BasePopup:1.9.4'
     //====================权限申请 ========================
-    implementation 'com.github.hotchemi:permissionsdispatcher:3.2.0'
+    implementation ('com.github.hotchemi:permissionsdispatcher:3.2.0'){
+        exclude group: 'com.android.support'
+    }
     kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.2.0'
     //====================轮播 ========================
-    implementation 'com.jude:rollviewpager:1.4.6'
     implementation 'com.youth.banner:banner:1.4.10'
     //====================json解析 ========================
     implementation 'com.alibaba:fastjson:1.2.47'
