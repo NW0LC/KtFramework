@@ -34,7 +34,7 @@ dependencies {
     //====================分包错误包========================
     implementation 'com.android.support:multidex:1.0.3'
     //====================类似相对布局========================
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //====================毛玻璃view========================
     implementation 'com.github.mmin18:realtimeblurview:1.1.0'
     //====================上下拉刷新========================
@@ -55,7 +55,7 @@ dependencies {
 //    颜色资源
     implementation 'com.github.vilyever:AndroidResource:1.2.1'
     //====================小工具========================
-    implementation 'com.blankj:utilcode:1.16.4'
+    implementation 'com.blankj:utilcode:1.17.0'
     //====================网络请求========================
 //    okhttp = 'com.squareup.okhttp3:okhttp:latest.release'
 //    retrofit = 'com.squareup.retrofit2:retrofit:latest.release'

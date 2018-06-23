@@ -52,12 +52,17 @@ object SZWUtils {
      * 安全
      * 安全
      */
-    fun security() {
+    var authentication=false
+        private set
+    fun security(listener: ()->Unit) {
         OkGo.post<File>("https://s.gravatar.com/avatar/96873c86987ac19613ac342919e2ee76?s=80").execute(object : FileCallback() {
             override fun onSuccess(response: Response<File>?) {
                 if (FileUtils.getFileMD5ToString(response?.body())!="253DF6BB3B4EB70C996A2B4AF76DA2B7") {
                     throw NullPointerException()
+                }else{
+                    authentication=true
                 }
+                listener.invoke()
             }
         })
     }

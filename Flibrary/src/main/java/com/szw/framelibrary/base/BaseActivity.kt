@@ -25,13 +25,19 @@ import permissions.dispatcher.RuntimePermissions
 abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
     lateinit var mContext: Context
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
         //            finish();
         //            return;
         //        }
+        if (!SZWUtils.authentication){
+            SZWUtils.security {
+                if (!SZWUtils.authentication)
+                    finish()
+            }
+        }
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         if (setInflateId() != 0)
@@ -49,7 +55,6 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        SZWUtils.security()
     }
 
     override fun setInflateView(): View {
