@@ -10,7 +10,7 @@
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:visibility="visible"
         app:realtimeBlurRadius="10dp"
         app:realtimeOverlayColor="@color/colorPrimary"
@@ -19,7 +19,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         app:navigationIcon="@drawable/tool_arrow_back_black_24dp"
         app:layout_collapseMode="pin"
         >
@@ -27,7 +27,7 @@
             android:id="@+id/buttonBarLayout"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
             android:layout_width="wrap_content">
             <ImageView
                 android:id="@+id/mTitleImg"
