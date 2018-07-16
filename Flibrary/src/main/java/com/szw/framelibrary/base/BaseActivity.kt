@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.hwangjr.rxbus.RxBus
 import com.szw.framelibrary.config.Constants
 import com.szw.framelibrary.utils.SZWUtils
@@ -52,6 +53,7 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
             init(savedInstanceState)
             initToolbar()
             RxBus.get().register(this)
+            ARouter.getInstance().inject(this)
         } catch (e: Exception) {
             e.printStackTrace()
         }

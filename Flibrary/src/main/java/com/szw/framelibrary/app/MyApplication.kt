@@ -3,6 +3,7 @@ package com.szw.framelibrary.app
 
 import android.content.Context
 import android.support.multidex.MultiDexApplication
+import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.Utils
@@ -42,16 +43,24 @@ abstract class MyApplication : MultiDexApplication(), AbsApplication {
      */
     var spUtils: SPUtils? = null
 
-    fun init() {
+    fun init(isDebug:Boolean) {
         salt = getSaltStr()?:""
         Fresco.initialize(this)
         Utils.init(this)
         spUtils = SPUtils.getInstance(packageName)
         initOkGo()
+        initARouter(isDebug)
         //Install  程序崩溃日志初始化
         //        CustomActivityOnCrash.install(this);
     }
-
+    fun initARouter(isDebug:Boolean) {
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (isDebug){
+            ARouter.openLog()     // 打印日志
+            ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        ARouter.init(this) // 尽可能早，推荐在Application中初始化
+    }
     fun initOkGo() {
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         //        HttpHeaders headers = new HttpHeaders();
