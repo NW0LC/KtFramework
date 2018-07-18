@@ -49,11 +49,11 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         mContext = this
         //        ButterKnife.bind(this);
         try {
+            RxBus.get().register(this)
+            ARouter.getInstance().inject(this)
             init()
             init(savedInstanceState)
             initToolbar()
-            RxBus.get().register(this)
-            ARouter.getInstance().inject(this)
         } catch (e: Exception) {
             e.printStackTrace()
         }
