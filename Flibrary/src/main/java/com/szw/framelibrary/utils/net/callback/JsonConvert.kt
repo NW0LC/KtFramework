@@ -132,7 +132,7 @@ class JsonConvert<T : AbsNetBean> : Converter<T> {
                     500 -> throw  IllegalStateException("服务器内部出现未知异常，无须处理正文内容")
                     511 -> throw  IllegalStateException("token已经失效，请重新申请token（使用交换密钥接口申请token并获得新的rc4的密钥），无须处理正文内容")
                     else -> //直接将服务端的错误信息抛出，onError中可以获取
-                        throw IllegalStateException(netEntity.messError)
+                        throw IllegalStateException(netEntity.error)
                 }
             }
         }

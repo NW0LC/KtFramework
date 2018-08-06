@@ -33,12 +33,12 @@ abstract class BaseActivity : AppCompatActivity(), AbsBaseActivity {
         //            finish();
         //            return;
         //        }
-        if (!SZWUtils.authentication){
-            SZWUtils.security {
-                if (!SZWUtils.authentication)
-                    finish()
-            }
-        }
+//        if (!SZWUtils.authentication){
+//            SZWUtils.security {
+//                if (!SZWUtils.authentication)
+//                    finish()
+//            }
+//        }
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         if (setInflateId() != 0)
